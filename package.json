@@ -1,11 +1,12 @@
 {
   "name": "philyabot",
   "version": "1.0.0",
-  "description": "",
+  "description": "discord bot by newbie",
   "main": "index.js",
   "dependencies": {
     "discord.js": "^12.5.3",
-    "trello": "^0.10.0"
+    "trello": "^0.10.0",
+    "ytdl-core": "^4.9.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/igorpowers/philyabot.git"
   },
-  "author": "",
+  "author": "Newbie",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/igorpowers/philyabot/issues"
