@@ -4,7 +4,7 @@ const client = new Discord.Client()
 const gen = "866752743293190145"
 const test = "907416624938778655"
 //const Trello = require("trello")
-const trello = new Trello("7589af510ae06b173705adc3c4b9e8d6", "36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c")
+//const trello = new Trello("7589af510ae06b173705adc3c4b9e8d6", "36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c")
 client.login("ODQ4ODcxMTg1NTI0OTgxODEw.YLS65Q.8flZcPBvpQDfXnR2ANKi8YrPL38")
 
 
