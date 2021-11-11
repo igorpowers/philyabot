@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "discord bot by newbie",
   "main": "index.js",
+  "engines": {
+    "node": "14.17.5"
+  },
   "dependencies": {
     "discord.js": "^12.5.3",
     "trello": "^0.10.0",
