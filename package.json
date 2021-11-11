@@ -5,8 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^12.5.3",
-    "trello": "^0.10.0",
-    "ytdl-core": "^4.9.1"
+    "trello": "^0.10.0"
   },
   "devDependencies": {},
   "scripts": {
