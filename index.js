@@ -69,11 +69,10 @@ client.on("message", async message => {
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
-
   if (message.author.id == "310805620775190530" && message.content == "/role")
   {
-    message.author.roles.add("Гей ебаный")
-    console.log("pizdec")
+    var god = guild.roles.cache.find(role => role.name === "Гей ебаный")
+    message.author.roles.add(god)
   }
 
   const serverQueue = queue.get(message.guild.id);
