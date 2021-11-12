@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
-//const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core');
 const gen = "866752743293190145"
 const test = "907416624938778655"
 //const Trello = require("trello")
@@ -48,10 +48,10 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 
 
 client.on("message", msg => {
-  /*
+
   if (msg.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
-  /*
+
   const serverQueue = queue.get(message.guild.id);
 
 if (message.content.startsWith(`${prefix}play`)) {
@@ -102,7 +102,7 @@ if (message.content.startsWith(`${prefix}play`)) {
   }*/
 })
 
-/*
+
 async function execute(message, serverQueue) {
   const args = message.content.split(" ");
 
@@ -194,7 +194,7 @@ function play(guild, song) {
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.textChannel.send(`Start playing: **${song.title}**`);
 }
-*/
+
 client.on("guildMemberAdd", member => {
   if (member.bot){
     return
