@@ -53,6 +53,8 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 	if (messageReaction.emoji.name == "✅") {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === "Verified")	
+    var god = guild.roles.cache.find(r => r.name === "BOT")	
+    guild.members.fetch(user.id).then(member => member.roles.remove(god))
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
 })
@@ -61,18 +63,14 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != "878567417939394560") return;
 	if (messageReaction.emoji.name == "✅") {
     var guild = messageReaction.message.guild
-    var role = guild.roles.cache.find(role => role.name === "Verified")	
+    var role = guild.roles.cache.find(role => role.name === "Verified")
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
 
 client.on("message", async message => {
 
-  if (message.author.bot) 
-  {
-    let role = message.guild.roles.cache.find(r => r.name === "BOT");
-    message.author.roles.add(role);
-  };
+  if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
