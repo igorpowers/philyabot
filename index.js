@@ -32,7 +32,6 @@ client.on("ready", () => {
   let channel = client.guilds.cache.get("733312455589101679").channels.cache.get("866715764961837076")
 	channel.messages.fetch('878567417939394560')
   const verify = client.channels.cache.get("866715764961837076") 
-  const role = guild.roles.cache.find(role => role.name === "Verified")	
   //verify.send(embed_info)
   verify.messages.fetch("878567417939394560")
   .then(mes => mes.react('✅'))
@@ -50,7 +49,8 @@ client.once("disconnect", () => {
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != "878567417939394560") return;
 	if (messageReaction.emoji.name == "✅") {
-		var guild = messageReaction.message.guild
+    var guild = messageReaction.message.guild
+    var role = guild.roles.cache.find(role => role.name === "Verified")	
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
 })
@@ -58,6 +58,8 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != "878567417939394560") return;
 	if (messageReaction.emoji.name == "✅") {
+    var guild = messageReaction.message.guild
+    var role = guild.roles.cache.find(role => role.name === "Verified")	
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
