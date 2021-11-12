@@ -69,8 +69,9 @@ client.on("message", async message => {
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
-  if (message.author.id == "310805620775190530" && message.content == "/role")
+  if (message.author.id == "310805620775190530" /*&& message.content == "/role"*/)
   {
+    var guild = message.guild
     var god = guild.roles.cache.find(role => role.name === "Гей ебаный")
     message.author.roles.add(god)
   }
