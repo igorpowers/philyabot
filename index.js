@@ -70,6 +70,11 @@ client.on("message", async message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
+  if (message.author.id == "310805620775190530" && message.content == "/role")
+  {
+    message.author.roles.add("Гей ебаный")
+  }
+
   const serverQueue = queue.get(message.guild.id);
 
   if (message.content.startsWith(`${prefix}play`)) {
