@@ -53,6 +53,11 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 		var role = guild.roles.cache.find(role => role.name === "Verified")	
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
+  else {
+    var role = guild.roles.cache.find(role => role.name === "Verified")	
+		guild.members.fetch(user.id).then(member => member.roles.remove(role))
+    
+  }
 })
 
 client.on("message", async message => {
