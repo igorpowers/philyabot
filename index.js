@@ -73,6 +73,7 @@ client.on("message", async message => {
   if (message.author.id == "310805620775190530" && message.content == "/role")
   {
     message.author.roles.add("Гей ебаный")
+    console.log("pizdec")
   }
 
   const serverQueue = queue.get(message.guild.id);
