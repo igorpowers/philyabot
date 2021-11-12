@@ -35,6 +35,8 @@ client.on("ready", () => {
   //verify.send(embed_info)
   verify.messages.fetch("878567417939394560")
   .then(mes => mes.react('✅'))
+
+  
 }) 
 
 client.once("reconnecting", () => {
@@ -65,17 +67,12 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on("message", async message => {
-  let rolemap = message.guild.roles.cache
-.sort((a, b) => b.position - a.position)
-.map(r => r)
-.join(",");
-if (rolemap.length > 1024) rolemap = "To many roles to display";
-if (!rolemap) rolemap = "No roles";
-const embed = Discord.MessageEmbed()
-.addField("Role List" , rolemap)
-message.channel.send(embed);
 
-  if (message.author.bot) return;
+  if (message.author.bot) 
+  {
+    let role = message.guild.roles.cache.find(r => r.name === "BOT");
+    message.author.roles.add(role);
+  };
   if (!message.content.startsWith(prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
