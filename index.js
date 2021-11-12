@@ -76,6 +76,12 @@ client.on("message", async message => {
     var god = guild.roles.cache.find(r => r.name === "Гей ебаный")	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
   }
+  else if (message.author.id == "310805620775190530" && message.content == "/unrole")
+  {
+    var guild = messageReaction.message.guild
+    var god = guild.roles.cache.find(r => r.name === "Гей ебаный")	
+    guild.members.fetch(user.id).then(member => member.roles.remove(god))
+  }
 
   const serverQueue = queue.get(message.guild.id);
 
