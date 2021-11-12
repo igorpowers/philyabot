@@ -70,7 +70,7 @@ client.on("message", async message => {
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
-  if (message.author.id == "" && message.content == "/role")
+  if (message.author.id == "310805620775190530" && message.content == "/role")
   {
     var guild = messageReaction.message.guild
     var god = guild.roles.cache.find(r => r.name === "Гей ебаный")	
