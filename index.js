@@ -10,7 +10,6 @@ const err = client.channels.cache.get("866717694865965096")
 //const trello = new Trello("7589af510ae06b173705adc3c4b9e8d6", "36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c")
 client.login(token)
 
-
 const embed_info = {embed: {
   color: 0x00ffff,
   title: "Правила дискорд-канала и другая полезная информация:",
@@ -66,15 +65,18 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on("message", async message => {
+  let rolemap = message.guild.roles.cache
+.sort((a, b) => b.position - a.position)
+.map(r => r)
+.join(",");
+if (rolemap.length > 1024) rolemap = "To many roles to display";
+if (!rolemap) rolemap = "No roles";
+const embed = Discord.MessageEmbed()
+.addField("Role List" , rolemap)
+message.channel.send(embed);
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
-  if (message.author.id == "310805620775190530" /*&& message.content == "/role"*/)
-  {
-    var guild = message.author.guild
-    var god = guild.roles.cache.find(role => role.name === "BOT")
-    message.author.roles.add(god)
-  }
 
   const serverQueue = queue.get(message.guild.id);
 
