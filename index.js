@@ -1,11 +1,13 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const ytdl = require('ytdl-core');
+const { prefix, token } = require("./config.json");
+const queue = new Map();
 const gen = "866752743293190145"
 const test = "907416624938778655"
 //const Trello = require("trello")
 //const trello = new Trello("7589af510ae06b173705adc3c4b9e8d6", "36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c")
-client.login("ODQ4ODcxMTg1NTI0OTgxODEw.YLS65Q.8flZcPBvpQDfXnR2ANKi8YrPL38")
+client.login(token)
 
 
 const embed_info = {embed: {
@@ -35,6 +37,14 @@ client.on("ready", () => {
   .then(mes => mes.react('✅'))
 }) 
 
+client.once("reconnecting", () => {
+  console.log("Reconnecting!");
+});
+
+client.once("disconnect", () => {
+  console.log("Disconnect!");
+});
+
 
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != "878567417939394560") return;
@@ -47,25 +57,25 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 
 
 
-client.on("message", msg => {
+client.on("message", async message=> {
 
-  if (msg.author.bot) return;
+  if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
 
-if (message.content.startsWith(`${prefix}play`)) {
- execute(message, serverQueue);
- return;
-} else if (message.content.startsWith(`${prefix}skip`)) {
- skip(message, serverQueue);
- return;
-} else if (message.content.startsWith(`${prefix}stop`)) {
- stop(message, serverQueue);
- return;
-} else {
- message.channel.send('Введи правильную команду!')
-}
+  if (message.content.startsWith(`${prefix}play`)) {
+    execute(message, serverQueue);
+    return;
+  } else if (message.content.startsWith(`${prefix}skip`)) {
+    skip(message, serverQueue);
+    return;
+  } else if (message.content.startsWith(`${prefix}stop`)) {
+    stop(message, serverQueue);
+    return;
+  } else {
+    message.channel.send("You need to enter a valid command!");
+  }
   /*
   if (msg.channel == gen && !msg.author.bot) {
     var pred = msg.content
@@ -101,7 +111,6 @@ if (message.content.startsWith(`${prefix}play`)) {
     }
   }*/
 })
-
 
 async function execute(message, serverQueue) {
   const args = message.content.split(" ");
