@@ -5,6 +5,7 @@ const { prefix, token } = require("./config.json");
 const queue = new Map();
 const gen = "866752743293190145"
 const test = "907416624938778655"
+const err = client.channels.cache.get("866717694865965096")
 //const Trello = require("trello")
 //const trello = new Trello("7589af510ae06b173705adc3c4b9e8d6", "36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c")
 client.login(token)
@@ -81,7 +82,8 @@ client.on("message", async message => {
     stop(message, serverQueue);
     return;
   } else {
-    message.channel.send("Введи правильную команду!");
+    return;
+    //message.channel.send("Введи правильную команду!");
   }
   /*
   if (msg.channel == gen && !msg.author.bot) {
@@ -206,7 +208,7 @@ function play(guild, song) {
       serverQueue.songs.shift();
       play(guild, serverQueue.songs[0]);
     })
-    .on("error", error => console.error(error));
+    .on("error", error => err.send(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.textChannel.send(`Сейчас играет: **${song.title}**`);
 }
