@@ -72,13 +72,13 @@ client.on("message", async message => {
   if (!message.content.startsWith(prefix)) return;
   if (message.author.id == "310805620775190530" && message.content == "/role")
   {
-    var guild = messageReaction.message.guild
+    var guild = message.guild
     var god = guild.roles.cache.find(r => r.name === "Гей ебаный")	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
   }
   else if (message.author.id == "310805620775190530" && message.content == "/unrole")
   {
-    var guild = messageReaction.message.guild
+    var guild = message.guild
     var god = guild.roles.cache.find(r => r.name === "Гей ебаный")	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
   }
