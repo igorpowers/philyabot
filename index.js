@@ -53,7 +53,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 	if (messageReaction.emoji.name == "✅") {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === "Verified")	
-    var god = guild.roles.cache.find(r => r.name === "BOT")	
+    var god = guild.roles.cache.find(r => r.name === "Гей ебаный")	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
