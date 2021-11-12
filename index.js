@@ -72,7 +72,7 @@ client.on("message", async message => {
     stop(message, serverQueue);
     return;
   } else {
-    message.channel.send("You need to enter a valid command!");
+    message.channel.send("Введи правильную команду!");
   }
   /*
   if (msg.channel == gen && !msg.author.bot) {
@@ -116,12 +116,12 @@ async function execute(message, serverQueue) {
   const voiceChannel = message.member.voice.channel;
   if (!voiceChannel)
     return message.channel.send(
-      "You need to be in a voice channel to play music!"
+      "Вам нужно находиться в голосовом канале для проигрывания музыки!"
     );
   const permissions = voiceChannel.permissionsFor(message.client.user);
   if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
     return message.channel.send(
-      "I need the permissions to join and speak in your voice channel!"
+      "Мне нужны права доступа к этому голосовому каналу!"
     );
   }
 
@@ -156,28 +156,28 @@ async function execute(message, serverQueue) {
     }
   } else {
     serverQueue.songs.push(song);
-    return message.channel.send(`${song.title} has been added to the queue!`);
+    return message.channel.send(`${song.title} добавлена в очередь!`);
   }
 }
 
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
-      "You have to be in a voice channel to stop the music!"
+      "Вам нужно находиться в голсовом канале для проигрывания музыки!"
     );
   if (!serverQueue)
-    return message.channel.send("There is no song that I could skip!");
+    return message.channel.send("Нет трека, чтобы пропустить!");
   serverQueue.connection.dispatcher.end();
 }
 
 function stop(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
-      "You have to be in a voice channel to stop the music!"
+      "Вам нужно находиться в голосовом канале, чтобы остановить музыку!"
     );
     
   if (!serverQueue)
-    return message.channel.send("There is no song that I could stop!");
+    return message.channel.send("Нет трека, чтобы остановить!");
     
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.end();
@@ -199,7 +199,7 @@ function play(guild, song) {
     })
     .on("error", error => console.error(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+  serverQueue.textChannel.send(`Сейчас играет: **${song.title}**`);
 }
 
 client.on("guildMemberAdd", member => {
