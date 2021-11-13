@@ -68,7 +68,7 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 
 client.on("message", async message => {
 
-  if (message.author.bot || !message.content.startsWith(prefix) || message.channel.id!=="908891600619442196" || message.channel.id!=="866717694865965096" ) return;
+  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=="908891600619442196" && message.channel.id!=="866717694865965096") ) return;
 
   const serverQueue = queue.get(message.guild.id);
 
