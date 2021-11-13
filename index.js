@@ -28,9 +28,6 @@ const embed_info = {embed: {
 }}
 
 client.on("ready", () => {
-  var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
-  guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
   console.log(`Logged in as ${client.user.tag}!`)
   let channel = client.guilds.cache.get("733312455589101679").channels.cache.get("866715764961837076")
 	channel.messages.fetch('878567417939394560')
@@ -38,7 +35,9 @@ client.on("ready", () => {
   //verify.send(embed_info)
   verify.messages.fetch("878567417939394560")
   .then(mes => mes.react('✅'))
-
+  var guild = verify.guild
+  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+  guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
   
 }) 
 
