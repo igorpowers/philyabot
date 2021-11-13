@@ -189,18 +189,24 @@ function skip(message, serverQueue) {
 }
 function role(message, user)
 {
-  var guild = message.guild
-  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
-  guild.members.fetch(user.id).then(member => member.roles.add(god))
-  message.channel.send("Added")
+  if (user.id === "310805620775190530")
+  {
+    var guild = message.guild
+    var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+    guild.members.fetch(user.id).then(member => member.roles.add(god))
+    message.channel.send("Added")
+  }
 }
 
 function unrole(message, user)
 {
-  var guild = message.guild
-  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
-  guild.members.fetch(user.id).then(member => member.roles.remove(god))
-  message.channel.send("Deleted")
+  if (user.id === "310805620775190530")
+  {
+    var guild = message.guild
+    var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+    guild.members.fetch(user.id).then(member => member.roles.remove(god))
+    message.channel.send("Deleted")
+  }
 }
 
 function stop(message, serverQueue) {
