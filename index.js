@@ -83,10 +83,10 @@ client.on("message", async message => {
       stop(message, serverQueue);
     return;
   } else if (message.content.startsWith(`${prefix}role`)) {
-      role();
+      role(message);
       return;
   } else if (message.content.startsWith(`${prefix}unrole`)) {
-      unrole();
+      unrole(message);
       return;
   } else {
     return;
@@ -187,7 +187,7 @@ function skip(message, serverQueue) {
     return message.channel.send("Нет трека, чтобы пропустить!");
   serverQueue.connection.dispatcher.end();
 }
-function role()
+function role(message)
 {
   var guild = message.guild
   var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
@@ -195,7 +195,7 @@ function role()
   message.channel.send("Added")
 }
 
-function unrole()
+function unrole(message)
 {
   var guild = message.guild
   var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
