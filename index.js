@@ -86,11 +86,9 @@ client.on("message", async message => {
     return;
   } else if (message.content.startsWith(`${prefix}role`)) {
       role(message, message.author);
-      message.delete()
       return;
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author);
-      message.delete()
       return;
   } else {
     return;
@@ -198,6 +196,7 @@ function role(message, user)
     var guild = message.guild
     var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
+    message.delete()
   }
 }
 
@@ -208,6 +207,7 @@ function unrole(message, user)
     var guild = message.guild
     var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
+    message.delete()
   }
 }
 
