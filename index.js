@@ -96,10 +96,10 @@ client.on("message", async message => {
   } else if (message.content.startsWith(`${prefix}stop`)) {
       stop(message, serverQueue);
     return;
-  } else if (message.content,startWith(`${prefix}role`)) {
+  } else if (message.content.startWith(`${prefix}role`)) {
       role();
       return;
-  } else if (message.content,startWith(`${prefix}unrole`)) {
+  } else if (message.content.startWith(`${prefix}unrole`)) {
       unrole();
       return;
   } else {
