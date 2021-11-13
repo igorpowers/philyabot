@@ -86,11 +86,11 @@ client.on("message", async message => {
     return;
   } else if (message.content.startsWith(`${prefix}role`)) {
       role(message, message.author);
-      message.delete
+      message.delete()
       return;
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author);
-      message.delete
+      message.delete()
       return;
   } else {
     return;
