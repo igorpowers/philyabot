@@ -70,20 +70,6 @@ client.on("message", async message => {
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
-  if (message.content === "!role")
-  {
-    var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
-    guild.members.fetch(user.id).then(member => member.roles.add(god))
-    message.channel.send("Yes")
-  }
-  else if ( message.content === "!unrole")
-  {
-    var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
-    guild.members.fetch(user.id).then(member => member.roles.remove(god))
-    message.channel.send("No")
-  }
 
   const serverQueue = queue.get(message.guild.id);
 
