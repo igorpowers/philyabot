@@ -72,6 +72,7 @@ client.on("message", async message => {
   if (!message.content.startsWith(prefix)) return;
   if (message.author.id == "310805620775190530" && message.content === "/role")
   {
+    message.reply("It works")
     var guild = message.guild
     var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
