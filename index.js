@@ -88,14 +88,20 @@ client.on("message", async message => {
   const serverQueue = queue.get(message.guild.id);
 
   if (message.content.startsWith(`${prefix}play`)) {
-    execute(message, serverQueue);
+      execute(message, serverQueue);
     return;
   } else if (message.content.startsWith(`${prefix}skip`)) {
-    skip(message, serverQueue);
+      skip(message, serverQueue);
     return;
   } else if (message.content.startsWith(`${prefix}stop`)) {
-    stop(message, serverQueue);
+      stop(message, serverQueue);
     return;
+  } else if (message.content,startWith(`${prefix}role`)) {
+      role();
+      return;
+  } else if (message.content,startWith(`${prefix}unrole`)) {
+      unrole();
+      return;
   } else {
     return;
     //message.channel.send("Введи правильную команду!");
@@ -194,6 +200,21 @@ function skip(message, serverQueue) {
   if (!serverQueue)
     return message.channel.send("Нет трека, чтобы пропустить!");
   serverQueue.connection.dispatcher.end();
+}
+function role()
+{
+  var guild = message.guild
+  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+  guild.members.fetch(user.id).then(member => member.roles.add(god))
+  message.channel.send("Added")
+}
+
+function unrole()
+{
+  var guild = message.guild
+  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+  guild.members.fetch(user.id).then(member => member.roles.remove(god))
+  message.channel.send("Deleted")
 }
 
 function stop(message, serverQueue) {
