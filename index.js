@@ -50,6 +50,16 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 
+client.on('voiceStateUpdate', (oldState, newState) => {
+  if(newState.channelID === "909587929809186857") //left
+      console.log('user left channel', newState.channelID);
+      /*
+  else if(oldState.channelID === null) // joined
+      console.log('user joined channel', newState.channelID);
+  else // moved
+      console.log('user moved channels', oldState.channelID, newState.channelID);
+      */
+});
 
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != "878567417939394560") return;
