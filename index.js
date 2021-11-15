@@ -45,10 +45,21 @@ client.on("ready", () => {
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
-  const user = await client.users.fetch(newState.id)
-  const member  = newState.guild.member(user)
+  //const user = await client.users.fetch(newState.id)
+  //const member  = newState.guild.member(user)
+  const channelid = '909587929809186857'
+  const categoryid = '733312455589101681'
 
-  if ((!oldState.channel && newState.channel.id ==='909587929809186857') || (oldState.channel && oldState.channel != '909587929809186857' && oldState.channel != newState.channel))
+  if (newState.channel?.id == channelid){
+    newState.guild.channels.create(`${newState.member.user.username}`, {
+      type: "voice",
+      parent: categoryid,
+    }).then(channel=>{
+      newState.setChannel(channel)
+    })
+  } else if(oldState.channel?.id != channelid && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size) oldState.channel.delete()
+/*
+  if (!oldState.channel && newState.channel.id ==='909587929809186857')
   {
     const channel = await newState.guild.channels.create(user.username, {
       type: "voice",
@@ -57,12 +68,12 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     member.voice.setChannel(channel)
     voiceCollection.set(user.id, channel.id)
   }
-  else if(!newState.channel || newState.channel)
+  else if(!newState.channel)
   {
     if(oldState.channelID === voiceCollection.get(newState.id)) 
       return oldState.channel.delete()
   }
-    
+    */
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
