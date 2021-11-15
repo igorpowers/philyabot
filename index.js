@@ -45,12 +45,10 @@ client.on("ready", () => {
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
-  let newUserChannel = newState.voiceChannel
-	let oldUserChannel = oldState.voiceChannel
   const user = await client.users.fetch(newState.id)
   const member  = newState.guild.member(user)
 
-  if (!oldState.channel && newState.channel.id ==='909587929809186857')
+  if (newState.channel.id ==='909587929809186857')
   {
     const channel = await newState.guild.channels.create(user.username, {
       type: "voice",
@@ -61,13 +59,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
   }
   else if(!newState.channel)
   {
-    /*
-    if(oldState.channelID === voiceCollection.get(newState.id)) 
-    {
-      return oldState.channel.delete()
-    }
-    */
-    if(oldUserChannel !== undefined && oldUserChannel !== newUserChannel)
+    if(oldState.channelID === voiceCollection.get(newState.id) && oldState.channel.members === null)
       return oldState.channel.delete()
   }
     
