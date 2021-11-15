@@ -56,7 +56,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
   if (!oldState.channel && newState.channel.id ==='909587929809186857')
   {
-    const channel = await newState.guild.channel.create(user.username, {
+    const channel = await newState.guild.channels.create(user.username, {
       type: voiceChannel,
       parent: newState.channel.parent,
     });
