@@ -57,9 +57,12 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     member.voice.setChannel(channel)
     voiceCollection.set(user.id, channel.id)
   }
-  else if((!newState.channel || newState.channel === null) && oldState.channel === voiceCollection.get(newState.id))
+  else if(!newState.channel)
   {
-    oldState.channel.delete()
+    if(oldState.channelID === voiceCollection.get(newState.id)) 
+    {
+      return oldState.channel.delete()
+    }
   }
     
 })
