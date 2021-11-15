@@ -58,7 +58,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     }).then(channel=>{
       newState.setChannel(channel)
     })
-  } else if(oldState.channel?.id != channelid && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size) oldState.channel.delete()
+  } else if(oldState.channel?.id != channelid && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != "909827760174809128") oldState.channel.delete()
 /*
   if (!oldState.channel && newState.channel.id ==='909587929809186857')
   {
