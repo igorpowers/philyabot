@@ -51,8 +51,23 @@ client.once("disconnect", () => {
 });
 
 client.on('voiceStateUpdate', (oldState, newState) => {
-  if(newState.channelID === "909587929809186857") //left
-    member.guild.channels.create(`${member.user.tag}`);
+  const user = await client.users.fetch(newstate.id)
+  const member  = newState.guild.member(user)
+
+  if (!oldState && newState.channel.id ==='909587929809186857')
+  {
+    const channel = await newState.guild.channel.create(user.tag{
+      type: voiceChannel,
+      parent: newState.channel.parent,
+    });
+    member.voice.setChannel(channel)
+    voiceColletcion.set(user.id, channel.id)
+  }
+  else if(!newState.channel)
+  {
+    if(oldState.channel === voiceCollection.get(newState.id)) return oldState.channel.delete()
+  }
+    
 });
 
 client.on('messageReactionAdd', (messageReaction, user) => {
