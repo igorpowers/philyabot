@@ -47,7 +47,7 @@ client.on("ready", () => {
 client.on('voiceStateUpdate', async (oldState, newState) => {
   //const user = await client.users.fetch(newState.id)
   //const member  = newState.guild.member(user)
-  const swfchannel = '909587929809186857'
+  const swfchannel = '909917024434683985'
   const categoryid = '733312455589101681'
   const kyfchannel = '909912840339591258  '
 
@@ -60,16 +60,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       newState.setChannel(channel)
     })
   } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != "909827760174809128") oldState.channel.delete()
-  if (newState.channel?.id == kyfchannel){
-    newState.guild.channels.create(`${newState.member.user.username}'s KYF channel`, {
-      type: "voice",
-      parent: categoryid,
-      userLimit: 5,
-    }).then(channel=>{
-      newState.setChannel(channel)
-    })
-  } else if(oldState.channel?.id != kyfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != "909827760174809128") oldState.channel.delete()
-
+  
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
