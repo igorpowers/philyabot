@@ -59,7 +59,8 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
   }
   else if(!newState.channel)
   {
-    if(oldState.channel === voiceCollection.get(newState.id)) return oldState.channel.delete()
+    if(oldState.channel === voiceCollection.get(newState.id)) 
+      return oldState.channel.delete()
   }
     
 })
@@ -227,7 +228,7 @@ function unrole(message, user)
 function stop(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send("Вам нужно находиться в голосовом канале, чтобы остановить музыку!")
-    
+
   if (!serverQueue)
     return message.channel.send("Нет трека, чтобы остановить!")
     
