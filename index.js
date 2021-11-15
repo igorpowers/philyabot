@@ -3,6 +3,7 @@ const client = new Discord.Client()
 const ytdl = require('ytdl-core');
 const { prefix, token } = require("./config.json");
 const queue = new Map();
+const voiceCollection = new Collection();
 const gen = "866752743293190145"
 const test = "907416624938778655"
 const err = client.channels.cache.get("866717694865965096")
