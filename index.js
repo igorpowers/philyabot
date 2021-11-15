@@ -50,13 +50,13 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 
-client.on('voiceStateUpdate', (oldState, newState) => {
+client.on('voiceStateUpdate', async (oldState, newState) => {
   const user = await client.users.fetch(newstate.id)
   const member  = newState.guild.member(user)
 
   if (!oldState && newState.channel.id ==='909587929809186857')
   {
-    const channel = await newState.guild.channel.create(user.tag{
+    const channel = await newState.guild.channel.create(user.tag, {
       type: voiceChannel,
       parent: newState.channel.parent,
     });
