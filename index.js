@@ -1,9 +1,10 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
-const ytdl = require('ytdl-core');
-const { prefix, token } = require("./config.json");
-const queue = new Map();
-const voiceCollection = new Collection();
+const ytdl = require('ytdl-core')
+const { prefix, token } = require("./config.json")
+const queue = new Map()
+const { Collection } = require('discord.js')
+const voiceCollection = new Collection()
 const gen = "866752743293190145"
 const test = "907416624938778655"
 const err = client.channels.cache.get("866717694865965096")
@@ -52,7 +53,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     const channel = await newState.guild.channels.create(user.username, {
       type: "voice",
       parent: newState.channel.parent,
-    });
+    })
     member.voice.setChannel(channel)
     voiceCollection.set(user.id, channel.id)
   }
@@ -61,10 +62,10 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     if(oldState.channel === voiceCollection.get(newState.id)) return oldState.channel.delete()
   }
     
-});
+})
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-	if(messageReaction.message.id != "878567417939394560") return;
+	if(messageReaction.message.id != "878567417939394560") return
 	if (messageReaction.emoji.name == "✅") {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === "Verified")	
@@ -73,7 +74,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 })
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-	if(messageReaction.message.id != "878567417939394560") return;
+	if(messageReaction.message.id != "878567417939394560") return
 	if (messageReaction.emoji.name == "✅") {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === "Verified")
@@ -83,28 +84,28 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 
 client.on("message", async message => {
 
-  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=="908891600619442196" && message.channel.id!=="866717694865965096") ) return;
+  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=="908891600619442196" && message.channel.id!=="866717694865965096") ) return
 
-  const serverQueue = queue.get(message.guild.id);
+  const serverQueue = queue.get(message.guild.id)
 
   if (message.content.startsWith(`${prefix}play`)) {
-      execute(message, serverQueue);
-    return;
+      execute(message, serverQueue)
+    return
   } else if (message.content.startsWith(`${prefix}skip`)) {
-      skip(message, serverQueue);
-    return;
+      skip(message, serverQueue)
+    return
   } else if (message.content.startsWith(`${prefix}stop`)) {
-      stop(message, serverQueue);
-    return;
+      stop(message, serverQueue)
+    return
   } else if (message.content.startsWith(`${prefix}role`)) {
-      role(message, message.author);
-      return;
+      role(message, message.author)
+      return
   } else if (message.content.startsWith(`${prefix}unrole`)) {
-      unrole(message, message.author);
-      return;
+      unrole(message, message.author)
+      return
   } else {
-    return;
-    //message.channel.send("Введи правильную команду!");
+    return
+    //message.channel.send("Введи правильную команду!")
   }
   /*
   if (msg.channel == gen && !msg.author.bot) {
@@ -143,25 +144,25 @@ client.on("message", async message => {
 })
 
 async function execute(message, serverQueue) {
-  const args = message.content.split(" ");
+  const args = message.content.split(" ")
 
-  const voiceChannel = message.member.voice.channel;
+  const voiceChannel = message.member.voice.channel
   if (!voiceChannel)
     return message.channel.send(
       "Вам нужно находиться в голосовом канале для проигрывания музыки!"
-    );
-  const permissions = voiceChannel.permissionsFor(message.client.user);
+    )
+  const permissions = voiceChannel.permissionsFor(message.client.user)
   if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
     return message.channel.send(
       "Мне нужны права доступа к этому голосовому каналу!"
-    );
+    )
   }
 
-  const songInfo = await ytdl.getInfo(args[1]);
+  const songInfo = await ytdl.getInfo(args[1])
   const song = {
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
-   };
+   }
    
   if (!serverQueue) {
     const queueContruct = {
@@ -171,24 +172,24 @@ async function execute(message, serverQueue) {
       songs: [],
       volume: 5,
       playing: true
-    };
+    }
 
-    queue.set(message.guild.id, queueContruct);
+    queue.set(message.guild.id, queueContruct)
 
-    queueContruct.songs.push(song);
+    queueContruct.songs.push(song)
 
     try {
-      var connection = await voiceChannel.join();
-      queueContruct.connection = connection;
-      play(message.guild, queueContruct.songs[0]);
+      var connection = await voiceChannel.join()
+      queueContruct.connection = connection
+      play(message.guild, queueContruct.songs[0])
     } catch (err) {
-      console.log(err);
-      queue.delete(message.guild.id);
-      return message.channel.send(err);
+      console.log(err)
+      queue.delete(message.guild.id)
+      return message.channel.send(err)
     }
   } else {
-    serverQueue.songs.push(song);
-    return message.channel.send(`${song.title} добавлена в очередь!`);
+    serverQueue.songs.push(song)
+    return message.channel.send(`${song.title} добавлена в очередь!`)
   }
 }
 
@@ -196,10 +197,10 @@ function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
       "Вам нужно находиться в голсовом канале для проигрывания музыки!"
-    );
+    )
   if (!serverQueue)
-    return message.channel.send("Нет трека, чтобы пропустить!");
-  serverQueue.connection.dispatcher.end();
+    return message.channel.send("Нет трека, чтобы пропустить!")
+  serverQueue.connection.dispatcher.end()
 }
 function role(message, user)
 {
@@ -225,35 +226,33 @@ function unrole(message, user)
 
 function stop(message, serverQueue) {
   if (!message.member.voice.channel)
-    return message.channel.send(
-      "Вам нужно находиться в голосовом канале, чтобы остановить музыку!"
-    );
+    return message.channel.send("Вам нужно находиться в голосовом канале, чтобы остановить музыку!")
     
   if (!serverQueue)
-    return message.channel.send("Нет трека, чтобы остановить!");
+    return message.channel.send("Нет трека, чтобы остановить!")
     
-  serverQueue.songs = [];
-  serverQueue.connection.dispatcher.end();
+  serverQueue.songs = []
+  serverQueue.connection.dispatcher.end()
   message.channel.send("Проигрывание остановлено")
 }
 
 function play(guild, song) {
-  const serverQueue = queue.get(guild.id);
+  const serverQueue = queue.get(guild.id)
   if (!song) {
-    serverQueue.voiceChannel.leave();
-    queue.delete(guild.id);
-    return;
+    serverQueue.voiceChannel.leave()
+    queue.delete(guild.id)
+    return
   }
 
   const dispatcher = serverQueue.connection
     .play(ytdl(song.url))
     .on("finish", () => {
-      serverQueue.songs.shift();
-      play(guild, serverQueue.songs[0]);
+      serverQueue.songs.shift()
+      play(guild, serverQueue.songs[0])
     })
-    .on("error", error => err.send(error));
-  dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  serverQueue.textChannel.send(`Сейчас играет: **${song.title}**`);
+    .on("error", error => err.send(error))
+  dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
+  serverQueue.textChannel.send(`Сейчас играет: **${song.title}**`)
 }
 
 client.on("guildMemberAdd", member => {
