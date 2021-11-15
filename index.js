@@ -41,15 +41,7 @@ client.on("ready", () => {
   var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
   guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
   */
-}) 
-
-client.once("reconnecting", () => {
-  console.log("Reconnecting!");
-});
-
-client.once("disconnect", () => {
-  console.log("Disconnect!");
-});
+})
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
   const user = await client.users.fetch(newState.id)
@@ -62,7 +54,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       parent: newState.channel.parent,
     });
     member.voice.setChannel(channel)
-    voiceColletcion.set(user.id, channel.id)
+    voiceCollection.set(user.id, channel.id)
   }
   else if(!newState.channel)
   {
