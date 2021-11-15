@@ -52,7 +52,7 @@ client.once("disconnect", () => {
 
 client.on('voiceStateUpdate', (oldState, newState) => {
   if(newState.channelID === "909587929809186857") //left
-    console.log(user.username,'entered channel', newState.channelID);
+    console.log(VoiceChannel.user.username,'entered channel', newState.channelID);
       /*
   else if(oldState.channelID === null) // joined
       console.log('user joined channel', newState.channelID);
