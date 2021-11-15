@@ -51,7 +51,7 @@ client.once("disconnect", () => {
 });
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
-  const user = await client.users.fetch(newstate.id)
+  const user = await client.users.fetch(newState.id)
   const member  = newState.guild.member(user)
 
   if (!oldState.channel && newState.channel.id ==='909587929809186857')
