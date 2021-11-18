@@ -109,7 +109,6 @@ client.on("message", async message => {
       name(mas,regex)
     } else return
     
-  }
   /*
   if (msg.channel == gen && !msg.author.bot) {
     var pred = msg.content
