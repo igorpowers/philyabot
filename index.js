@@ -39,8 +39,8 @@ client.on("ready", () => {
   .then(mes => mes.react('✅'))
 
   var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === "769084407721099265")
-  guild.roles.delete("910962965178638356")
+  var god = guild.roles.cache.find(r => r.id === "910962965178638356")
+  guild.roles.delete(god)
   //guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
 })
 
