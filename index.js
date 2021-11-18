@@ -40,7 +40,7 @@ client.on("ready", () => {
 
   var guild = verify.guild
   var god = guild.roles.cache.find(r => r.id === "910962965178638356")
-  guild.roles.delete(god)
+  god.delete()
   //guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
 })
 
