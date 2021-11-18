@@ -37,11 +37,11 @@ client.on("ready", () => {
   //verify.send(embed_info)
   verify.messages.fetch("878567417939394560")
   .then(mes => mes.react('✅'))
-  /*
+
   var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
-  guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
-  */
+  var god = guild.roles.cache.find(r => r.id === "769084407721099265")
+  guild.roles.delete("910962965178638356")
+  //guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -102,9 +102,13 @@ client.on("message", async message => {
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
       return
-  } else {
-    return
-    //message.channel.send("Введи правильную команду!")
+  } 
+  if (message.member.roles.find(role => role.name === 'Гей ебаный')) {
+    var mas = msg.content
+    var regex = mas.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
+      name(mas,regex)
+    } else return
+    
   }
   /*
   if (msg.channel == gen && !msg.author.bot) {
@@ -126,20 +130,7 @@ client.on("message", async message => {
     }
 
   }
-  
-  if (message.member.roles.find(role => role.name === 'Гей ебаный'))
-  {
-    var mas = msg.content
-    var regex = mas.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
-    if (regex)
-    {
-      var chan = client.guilds.cache.get("733312455589101679").channels.cache.get("907416624938778655")
-      var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`).id
-      msg.channel.send(`Ник ${regex.groups.name} изменен на ${regex.groups.newname}`)
-      var mentionedMember = chan.guild.members.cache.get(id)
-      mentionedMember.setNickname(`${regex.groups.newname}`)
-    }
-  }*/
+  */
 })
 
 async function execute(message, serverQueue) {
@@ -189,6 +180,17 @@ async function execute(message, serverQueue) {
   } else {
     serverQueue.songs.push(song)
     return message.channel.send(`${song.title} добавлена в очередь!`)
+  }
+}
+
+function name(message, regex)
+{
+  if (regex){
+    var chan = client.guilds.cache.get("733312455589101679").channels.cache.get(message.channel.id)
+    var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`).id
+    msg.channel.send(`Ник ${regex.groups.name} изменен на ${regex.groups.newname}`)
+    var mentionedMember = chan.guild.members.cache.get(id)
+    mentionedMember.setNickname(`${regex.groups.newname}`)
   }
 }
 
