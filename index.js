@@ -71,7 +71,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
 })
-w
+
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
