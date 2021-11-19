@@ -60,7 +60,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     }).then(channel=>{
       newState.setChannel(channel)  
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && (oldState.channel?.id != '909827760174809128' || oldState.channel?.id != '911269704788746310' || oldState.channel?.id != '911270626659020902' || oldState.channel?.id != '911020666696912927')) oldState.channel.delete()
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911020666696912927' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699') oldState.channel.delete()
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
@@ -71,7 +71,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
 })
-
+w
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
