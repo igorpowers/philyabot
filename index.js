@@ -1,20 +1,20 @@
-const Discord = require("discord.js")
+const Discord = require('discord.js')
 const client = new Discord.Client()
 const ytdl = require('ytdl-core')
-const { prefix, token } = require("./config.json")
+const { prefix, token } = require('./config.json')
 const queue = new Map()
 const { Collection } = require('discord.js')
 const voiceCollection = new Collection()
-const gen = "866752743293190145"
-const test = "907416624938778655"
-const err = client.channels.cache.get("866717694865965096")
-//const Trello = require("trello")
-//const trello = new Trello("7589af510ae06b173705adc3c4b9e8d6", "36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c")
+const gen = '866752743293190145'
+const test = '907416624938778655'
+const err = client.channels.cache.get('866717694865965096')
+//const Trello = require('trello')
+//const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
 client.login(token)
 
 const embed_info = {embed: {
   color: 0x00ffff,
-  title: "Правила дискорд-канала и другая полезная информация:",
+  title: 'Правила дискорд-канала и другая полезная информация:',
   description: `1.0 Запрещена любая реклама сторонних ресурсов
 1.1 Запрещён флуд/спам/оффтоп как в голосовых, так и в текстовых каналах. К флуду в голосовых каналах относятся крики, вопли, многочисленный повтор одной и той же фразы/слова, использование Soundpad и т.п.
 1.2 Запрещено заниматься распространением личной информации других игроков, в т.ч. их фото без их согласия в письменной форме
@@ -29,20 +29,20 @@ const embed_info = {embed: {
 
 }}
 
-client.on("ready", () => {
+client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  let channel = client.guilds.cache.get("733312455589101679").channels.cache.get("866715764961837076")
+  let channel = client.guilds.cache.get('733312455589101679').channels.cache.get('866715764961837076')
 	channel.messages.fetch('878567417939394560')
-  const verify = client.channels.cache.get("866715764961837076") 
+  const verify = client.channels.cache.get('866715764961837076') 
   //verify.send(embed_info)
-  verify.messages.fetch("878567417939394560")
+  verify.messages.fetch('878567417939394560')
   .then(mes => mes.react('✅'))
   var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === "769084407721099265")
+  var god = guild.roles.cache.find(r => r.id === '769084407721099265')
 
   god.setName('Warden')
 /*
-  guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
+  guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
 */
 })
 
@@ -54,36 +54,36 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
   if (newState.channel?.id == swfchannel) {
     newState.guild.channels.create(`${newState.member.user.username}'s  channel`, {
-      type: "voice",
+      type: 'voice',
       parent: categoryid,
       userLimit: 4,
     }).then(channel=>{
       newState.setChannel(channel)
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != "909827760174809128") oldState.channel.delete()
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '909827760174809128') oldState.channel.delete()
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
-	if(messageReaction.message.id != "878567417939394560") return
-	if (messageReaction.emoji.name == "✅") {
+	if(messageReaction.message.id != '878567417939394560') return
+	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
-    var role = guild.roles.cache.find(role => role.name === "Verified")	
+    var role = guild.roles.cache.find(role => role.name === 'Verified')	
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
 })
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-	if(messageReaction.message.id != "878567417939394560") return
-	if (messageReaction.emoji.name == "✅") {
+	if(messageReaction.message.id != '878567417939394560') return
+	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
-    var role = guild.roles.cache.find(role => role.name === "Verified")
+    var role = guild.roles.cache.find(role => role.name === 'Verified')
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
 
-client.on("message", async message => {
+client.on('message', async message => {
 
-  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=="908891600619442196" && message.channel.id!=="866717694865965096") ) return
+  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096') ) return
 
   const serverQueue = queue.get(message.guild.id)
 
@@ -116,18 +116,18 @@ client.on("message", async message => {
     var pred = msg.content
     var regex = pred.match(/Название:(?<name>.+)\sSID:(?<sid>.+)\sОписание:(?<desc>.+)/)
     if (regex) {
-      trello.addCard(`${regex.groups.name} (${regex.groups.sid})`, regex.groups.desc, "60c30d181acf602aa3fc2c66", (error, trelloCard) => {
-        msg.author.send("Ваше предложение отправлено старшей администрации, спасибо за помощь проекту :blue_heart:", trelloCard)
+      trello.addCard(`${regex.groups.name} (${regex.groups.sid})`, regex.groups.desc, '60c30d181acf602aa3fc2c66', (error, trelloCard) => {
+        msg.author.send('Ваше предложение отправлено старшей администрации, спасибо за помощь проекту :blue_heart:', trelloCard)
         if (error) {
-        	var err = client.channels.cache.get("866717694865965096")
+        	var err = client.channels.cache.get('866717694865965096')
         	err.send(error.name)
-        	msg.author.send("Ваше предложение было удалено, так как произошла ошибка. Свяжитесь с техническим администратором.")
+        	msg.author.send('Ваше предложение было удалено, так как произошла ошибка. Свяжитесь с техническим администратором.')
         }
       }) 
     }
     else {  
       msg.delete()
-      msg.author.send("Ваше предложение было удалено, так как не соответствовало требованиям по оформлению.")
+      msg.author.send('Ваше предложение было удалено, так как не соответствовало требованиям по оформлению.')
     }
 
   }
@@ -135,17 +135,17 @@ client.on("message", async message => {
 })
 
 async function execute(message, serverQueue) {
-  const args = message.content.split(" ")
+  const args = message.content.split(' ')
 
   const voiceChannel = message.member.voice.channel
   if (!voiceChannel)
     return message.channel.send(
-      "Вам нужно находиться в голосовом канале для проигрывания музыки!"
+      'Вам нужно находиться в голосовом канале для проигрывания музыки!'
     )
   const permissions = voiceChannel.permissionsFor(message.client.user)
-  if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+  if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
     return message.channel.send(
-      "Мне нужны права доступа к этому голосовому каналу!"
+      'Мне нужны права доступа к этому голосовому каналу!'
     )
   }
 
@@ -187,7 +187,7 @@ async function execute(message, serverQueue) {
 function name(message, regex)
 {
   if (regex){
-    var chan = client.guilds.cache.get("733312455589101679").channels.cache.get(message.channel.id)
+    var chan = client.guilds.cache.get('733312455589101679').channels.cache.get(message.channel.id)
     var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`).id
     msg.channel.send(`Ник ${regex.groups.name} изменен на ${regex.groups.newname}`)
     var mentionedMember = chan.guild.members.cache.get(id)
@@ -198,18 +198,18 @@ function name(message, regex)
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
-      "Вам нужно находиться в голсовом канале для проигрывания музыки!"
+      'Вам нужно находиться в голсовом канале для проигрывания музыки!'
     )
   if (!serverQueue)
-    return message.channel.send("Нет трека, чтобы пропустить!")
+    return message.channel.send('Нет трека, чтобы пропустить!')
   serverQueue.connection.dispatcher.end()
 }
 function role(message, user)
 {
-  if (user.id === "310805620775190530")
+  if (user.id === '310805620775190530')
   {
     var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
     message.delete()
   }
@@ -217,10 +217,10 @@ function role(message, user)
 
 function unrole(message, user)
 {
-  if (user.id === "310805620775190530")
+  if (user.id === '310805620775190530')
   {
     var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === "769084407721099265")	
+    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
     message.delete()
   }
@@ -228,14 +228,14 @@ function unrole(message, user)
 
 function stop(message, serverQueue) {
   if (!message.member.voice.channel)
-    return message.channel.send("Вам нужно находиться в голосовом канале, чтобы остановить музыку!")
+    return message.channel.send('Вам нужно находиться в голосовом канале, чтобы остановить музыку!')
 
   if (!serverQueue)
-    return message.channel.send("Нет трека, чтобы остановить!")
+    return message.channel.send('Нет трека, чтобы остановить!')
     
   serverQueue.songs = []
   serverQueue.connection.dispatcher.end()
-  message.channel.send("Проигрывание остановлено")
+  message.channel.send('Проигрывание остановлено')
 }
 
 function play(guild, song) {
@@ -248,16 +248,16 @@ function play(guild, song) {
 
   const dispatcher = serverQueue.connection
     .play(ytdl(song.url))
-    .on("finish", () => {
+    .on('finish', () => {
       serverQueue.songs.shift()
       play(guild, serverQueue.songs[0])
     })
-    .on("error", error => err.send(error))
+    .on('error', error => err.send(error))
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5)
   serverQueue.textChannel.send(`Сейчас играет: **${song.title}**`)
 }
 
-client.on("guildMemberAdd", member => {
+client.on('guildMemberAdd', member => {
   if (member.bot){
     return
   }
