@@ -60,7 +60,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     }).then(channel=>{
       newState.setChannel(channel)
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '909827760174809128') oldState.channel.delete()
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && (oldState.channel?.id != '909827760174809128' || oldState.channel?.id != '911020666696912927' || oldState.channel?.id != '911242494514192425' || oldState.channel?.id != '911243727043956784')) oldState.channel.delete()
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
