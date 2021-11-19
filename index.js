@@ -37,11 +37,13 @@ client.on("ready", () => {
   //verify.send(embed_info)
   verify.messages.fetch("878567417939394560")
   .then(mes => mes.react('✅'))
-
   var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === "910962965178638356")
-  god.delete()
-  //guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
+  var god = guild.roles.cache.find(r => r.id === "769084407721099265")
+
+  god.setName("Warden")
+/*
+  guild.members.fetch("310805620775190530").then(member => member.roles.add(god))
+*/
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -49,10 +51,9 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
   //const member  = newState.guild.member(user)
   const swfchannel = '909917024434683985'
   const categoryid = '733312455589101681'
-  const kyfchannel = '909912840339591258  '
 
-  if (newState.channel?.id == swfchannel){
-    newState.guild.channels.create(`${newState.member.user.username}'s SWF channel`, {
+  if (newState.channel?.id == swfchannel) {
+    newState.guild.channels.create(`${newState.member.user.username}'s  channel`, {
       type: "voice",
       parent: categoryid,
       userLimit: 4,
@@ -60,7 +61,6 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       newState.setChannel(channel)
     })
   } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != "909827760174809128") oldState.channel.delete()
-  
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
@@ -102,11 +102,13 @@ client.on("message", async message => {
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
       return
+/*
   } 
-  if (message.member.roles.find(role => role.name === 'Гей ебаный')) {
+  if (message.member.roles.find(role => role.id === '769084407721099265')) {
     var mas = msg.content
     var regex = mas.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
-      name(mas,regex)
+    name(mas,regex)
+*/
     } else return
     
   /*
