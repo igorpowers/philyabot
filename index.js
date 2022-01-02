@@ -35,12 +35,12 @@ client.on('ready', () => {
 	channel.messages.fetch('878567417939394560')
   const verify = client.channels.cache.get('866715764961837076') 
   //verify.send(embed_info)
-  verify.messages.fetch('878567417939394560')
-  .then(mes => mes.react('✅'))
+  verify.messages.fetch('878567417939394560').edit(embed_info)
+  //.then(mes => mes.react('✅'))
   var guild = verify.guild
   var god = guild.roles.cache.find(r => r.id === '769084407721099265')
 
-  god.setName('Warden')
+  //god.setName('Warden')
 /*
   guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
 */
