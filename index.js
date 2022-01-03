@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+  const Discord = require('discord.js')
 const client = new Discord.Client()
 const ytdl = require('ytdl-core')
 const { prefix, token } = require('./config.json')
@@ -6,6 +6,8 @@ const queue = new Map()
 const { Collection } = require('discord.js')
 const voiceCollection = new Collection()
 const gen = '866752743293190145'
+const guild = message.guild
+const god = guild.roles.cache.find(r => r.id === '769084407721099265')
 const test = '907416624938778655'
 const err = client.channels.cache.get('866717694865965096')
 //const Trello = require('trello')
@@ -37,20 +39,7 @@ client.on('ready', () => {
   //verify.send(embed_info)
   verify.messages.fetch('878567417939394560')
   //.then(mes => mes.react('✅'))
-  var guild = verify.guild
   var god = guild.roles.cache.find(r => r.id === '769084407721099265')
-  const Embed = new Discord.MessageEmbed()
-        .setDescription(`1.0 Запрещена любая реклама сторонних ресурсов
-        1.1 Запрещён флуд/спам/оффтоп как в голосовых, так и в текстовых каналах. К флуду в голосовых каналах относятся крики, вопли, многочисленный повтор одной и той же фразы/слова, использование Soundpad и т.п.
-        1.2 Запрещено заниматься распространением личной информации других игроков, в т.ч. их фото без их согласия в письменной форме
-        1.3 Запрещена фальсификация любой информации об участниках/отдельных личностях и т.п.
-        1.4 Запрещено оскорблять участников, злоупотреблять ненормативной лексикой, токсичное поведение и неуважение к участникам канала
-        1.5 Запрещено ставить ники, которые могут ввести других в заблуждение
-        1.6 Запрещен призыв к насилию, травле, суициду, наркомании, алкоголоизму и т.п.
-        
-        
-        :eye: Оставьте реакцию ниже, чтобы получить доступ ко всем текстовым и голосовым каналам
-        :warning: Оставляя эту реакцию, Вы соглашаетесь с правилами нашего сервера :warning:`)
 
   //god.setName('Warden')
 /*
@@ -110,10 +99,10 @@ client.on('message', async message => {
     return
   } else if (message.content.startsWith(`${prefix}role`)) {
       role(message, message.author)
-      return
+    return
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
-      return
+    return
 /*
   } 
   if (message.member.roles.find(role => role.id === '769084407721099265')) {
@@ -220,8 +209,6 @@ function role(message, user)
 {
   if (user.id === '310805620775190530')
   {
-    var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
     message.delete()
   }
@@ -231,8 +218,6 @@ function unrole(message, user)
 {
   if (user.id === '310805620775190530')
   {
-    var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
     message.delete()
   }
