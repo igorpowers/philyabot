@@ -10,9 +10,9 @@ const guild = message.guild
 const god = guild.roles.cache.find(r => r.id === '769084407721099265')
 const test = '907416624938778655'
 const err = client.channels.cache.get('866717694865965096')
+client.login(token)
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
-client.login(token)
 
 const embed_info = {embed: {
   color: 0x00ffff,
@@ -63,8 +63,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
-    var g = messageReaction.guild
-    var role = guild.roles.cache.find(role => role.name === 'Verified')	
+    var role = messageReaction.guild.roles.cache.find(role => role.name === 'Verified')	
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
 })
@@ -72,8 +71,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
-    var g = messageReaction.guild
-    var role = g.roles.cache.find(role => role.name === 'Verified')
+    var role = messageReaction.guild.roles.cache.find(role => role.name === 'Verified')
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
