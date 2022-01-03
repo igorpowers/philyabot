@@ -39,7 +39,6 @@ client.on('ready', () => {
   //verify.send(embed_info)
   verify.messages.fetch('878567417939394560')
   //.then(mes => mes.react('✅'))
-  var god = guild.roles.cache.find(r => r.id === '769084407721099265')
   //god.setName('Warden')
   //guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
 })
@@ -64,7 +63,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
-    var guild = messageReaction.message.guild
+    var g = messageReaction.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')	
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
 	}
@@ -73,8 +72,8 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
-    var guild = messageReaction.message.guild
-    var role = guild.roles.cache.find(role => role.name === 'Verified')
+    var g = messageReaction.guild
+    var role = g.roles.cache.find(role => role.name === 'Verified')
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
