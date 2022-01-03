@@ -40,11 +40,8 @@ client.on('ready', () => {
   verify.messages.fetch('878567417939394560')
   //.then(mes => mes.react('✅'))
   var god = guild.roles.cache.find(r => r.id === '769084407721099265')
-
   //god.setName('Warden')
-/*
-  guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-*/
+  //guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
