@@ -209,6 +209,10 @@ async function clear(message)
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
         message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
+        .catch({
+          var err = client.channels.cache.get('866717694865965096')
+        	err.send(error.name)
+        });
       })
     }
   }
