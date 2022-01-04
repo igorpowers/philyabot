@@ -83,6 +83,20 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on('message', async message => {
+  function clear(message)
+{
+  if (!message.author.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
+  var regex = message.content.match(/!clear\s(?<count>.+)/)
+  if (regex){ 
+    let amount = parseInt(regex.groups.count)
+    if(isNaN(amount) || !Number.isInteger(parseInt(amount))) return message.channel.send("Введите целое число!")
+    if (Number.isInteger(parseInt(amount))){
+      await message.channel.bulkDelete(parseInt(amount) + 1, false).then((_message) => {
+        message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
+      })
+    }
+  }
+}
   var guild = message.guild
   if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096') ) return
 
@@ -199,20 +213,6 @@ function name(message, regex)
   }
 }
 
-function clear(msg)
-{
-  if (!msg.author.hasPermission('MANAGE_MESSAGES')) return msg.channel.send("Не хватает прав для использования этой команды",);
-  var regex = msg.content.match(/!clear\s(?<count>.+)/)
-  if (regex){ 
-    let amount = parseInt(regex.groups.count)
-    if(isNaN(amount) || !Number.isInteger(parseInt(amount))) return msg.channel.send("Введите целое число!")
-    if (Number.isInteger(parseInt(amount))){
-      await msg.channel.bulkDelete(parseInt(amount) + 1, false).then((_message) => {
-        msg.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
-      })
-    }
-  }
-}
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
