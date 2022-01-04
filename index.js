@@ -104,7 +104,7 @@ client.on('message', async message => {
       unrole(message, message.author)
       return
   } else if (message.content.startsWith(`${prefix}clear`)){
-      clear(message, msg.author)
+      clear(message, message.author)
       return
   /*
   } 
