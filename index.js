@@ -195,19 +195,10 @@ function name(message, regex)
 {
   if (regex){
     var chan = client.guilds.cache.get('733312455589101679').channels.cache.get(message.channel.id)
-    var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`).id
-    msg.channel.send(`Ник ${regex.groups.name} изменен на ${regex.groups.newname}`)
+    var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`)
+    msg.channel.send(`Ник <@${id.id}> изменен на ${regex.groups.newname}`)
     var mentionedMember = chan.guild.members.cache.get(id)
     mentionedMember.setNickname(`${regex.groups.newname}`)
-  }
-}
-
-function id(message)
-{
-  var regex = message.content.match(/!id\s(?<user>.+)/)
-  if (regex){
-    var id = client.users.cache.find(regex.groups.user)
-    message.reply(id)
   }
 }
 
