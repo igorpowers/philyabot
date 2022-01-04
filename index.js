@@ -83,9 +83,9 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on('message', async message => {
-  function clear(message)
+  function clear(message, author)
 {
-  if (!message.author.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
+  if (!author.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
   var regex = message.content.match(/!clear\s(?<count>.+)/)
   if (regex){ 
     let amount = parseInt(regex.groups.count)
@@ -118,7 +118,7 @@ client.on('message', async message => {
       unrole(message, message.author)
       return
   } else if (message.content.startsWith(`${prefix}clear`)){
-      clear(message)
+      clear(message, message.author)
       return
   /*
   } 
