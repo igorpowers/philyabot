@@ -91,10 +91,10 @@ client.on('message', async message => {
   if (message.content.startsWith(`${prefix}play`)) {
       execute(message, serverQueue)
     return
-  } else if (message.content.startsWith(`${prefix}skip`)) {
+  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='908891600619442196') {
       skip(message, serverQueue)
       return
-  } else if (message.content.startsWith(`${prefix}stop`)) {
+  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='908891600619442196') {
       stop(message, serverQueue)
       return
   } else if (message.content.startsWith(`${prefix}role`)) {
