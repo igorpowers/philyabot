@@ -11,7 +11,7 @@
     "ffmpeg-static": "^4.4.0",
     "opusscript": "0.0.8",
     "trello": "^0.10.0",
-    "ytdl-core": "^4.9.1"
+    "ytdl-core": "^4.9.2"
   },
   "devDependencies": {},
   "scripts": {
