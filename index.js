@@ -192,7 +192,7 @@ function name(message)
 {
   var regex = message.content.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
   if (regex){
-    var chan = client.guilds.cache.get('733312455589101679').channels.cache.get(message.channel.id)
+    var chan = client.guilds.cache.get('908891600619442196').channels.cache.get(message.channel.id)
     var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`)
     msg.channel.send(`Ник <@${id.id}> изменен на ${regex.groups.newname}`)
     var mentionedMember = chan.guild.members.cache.get(id)
