@@ -192,8 +192,13 @@ function name(message)
 {
   var regex = message.content.match(/!nick\s(?<name>.+)/)
   if (regex){
-    message.channel.send(regex.groups.name.username)
+    const User = client.users.cache.get(regex.groups.name)
+    if (User) {
+    message.channel.send(User.tag)
+    } else {
+    message.channel.send("User not found.")
     }
+  }
 }
 
 async function clear(message){
