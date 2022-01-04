@@ -207,7 +207,7 @@ async function clear(message)
     let amount = parseInt(regex.groups.count)
     if(isNaN(amount) || !Number.isInteger(parseInt(amount))) return message.channel.send("Введите целое число!")
     if (Number.isInteger(parseInt(amount))){
-      await message.channel.bulkDelete(parseInt(amount) + 1, false).then((_message) => {
+      await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
         message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
       })
     }
