@@ -104,7 +104,7 @@ client.on('message', async message => {
       unrole(message, message.author)
       return
   }
-    else if (message.content.startsWith(`${prefix}clear`) && message.member.roles.find(r => r.name === "Warden")){
+    else if (message.content.startsWith(`${prefix}clear`) && message.author.roles.find(r => r.name === "Warden")){
       clear(message)
       return
 /*
