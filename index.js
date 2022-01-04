@@ -84,7 +84,7 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 
 client.on('message', async message => {
   var guild = message.guild
-  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096') ) return
+  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096')) return
 
   const serverQueue = queue.get(message.guild.id)
 
@@ -103,7 +103,7 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
       return
-  } else if (message.content.startsWith(`${prefix}clear`)){
+  } else if (message.content.startsWith(`${prefix}clear`) && (message.channel.id == '907612033992781865' || message.channel.id == "908891600619442196" || message.channel.id == "866717694865965096")) {
       clear(message)
       return
   /*
