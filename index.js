@@ -106,6 +106,9 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
+  } else if (message.content.startsWith(`${prefix}id`)) {
+      id(message)
+      return
   /*
   } 
   if (message.member.roles.find(role => role.id === '769084407721099265')) {
@@ -196,6 +199,15 @@ function name(message, regex)
     msg.channel.send(`Ник ${regex.groups.name} изменен на ${regex.groups.newname}`)
     var mentionedMember = chan.guild.members.cache.get(id)
     mentionedMember.setNickname(`${regex.groups.newname}`)
+  }
+}
+
+function id(message)
+{
+  var regex = message.content.match(/!id\s(?<user>.+)/)
+  if (regex){
+    var id = client.users.cache.find(regex.groups.user)
+    message.reply(id)
   }
 }
 
