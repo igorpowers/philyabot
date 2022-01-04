@@ -83,20 +83,6 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on('message', async message => {
-  function clear(message, author)
-{
-  if (!author.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
-  var regex = message.content.match(/!clear\s(?<count>.+)/)
-  if (regex){ 
-    let amount = parseInt(regex.groups.count)
-    if(isNaN(amount) || !Number.isInteger(parseInt(amount))) return message.channel.send("Введите целое число!")
-    if (Number.isInteger(parseInt(amount))){
-      await message.channel.bulkDelete(parseInt(amount) + 1, false).then((_message) => {
-        message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
-      })
-    }
-  }
-}
   var guild = message.guild
   if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096') ) return
 
@@ -118,7 +104,7 @@ client.on('message', async message => {
       unrole(message, message.author)
       return
   } else if (message.content.startsWith(`${prefix}clear`)){
-      clear(message, message.author)
+      clear(message, msg.author)
       return
   /*
   } 
@@ -210,6 +196,21 @@ function name(message, regex)
     msg.channel.send(`Ник ${regex.groups.name} изменен на ${regex.groups.newname}`)
     var mentionedMember = chan.guild.members.cache.get(id)
     mentionedMember.setNickname(`${regex.groups.newname}`)
+  }
+}
+
+async function clear(message, author)
+{
+  if (!author.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
+  var regex = message.content.match(/!clear\s(?<count>.+)/)
+  if (regex){ 
+    let amount = parseInt(regex.groups.count)
+    if(isNaN(amount) || !Number.isInteger(parseInt(amount))) return message.channel.send("Введите целое число!")
+    if (Number.isInteger(parseInt(amount))){
+      await message.channel.bulkDelete(parseInt(amount) + 1, false).then((_message) => {
+        message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
+      })
+    }
   }
 }
 
