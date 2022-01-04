@@ -83,9 +83,6 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on('message', async message => {
-  if (message.author.id == '310805620775190530'){
-    message.reply(client.users.cache.find(user => user.id === message))
-  }
   var guild = message.guild
   if (message.author.bot || !message.content.startsWith(prefix)) return
 
