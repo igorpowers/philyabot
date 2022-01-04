@@ -109,14 +109,11 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}id`)) {
       id(message)
       return
-  /*
-  } 
-  if (message.member.roles.find(role => role.id === '769084407721099265')) {
-    var mas = msg.content
-    var regex = mas.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
-    name(mas,regex)
-  */
-    } else return
+  } else if (message.content.startsWith(`${prefix}name`)) {
+    name(message)
+    return
+  
+  } else return
     
   /*
   if (msg.channel == gen && !msg.author.bot) {
@@ -191,8 +188,9 @@ async function execute(message, serverQueue) {
   }
 }
 
-function name(message, regex)
+function name(message)
 {
+  var regex = message.content.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
   if (regex){
     var chan = client.guilds.cache.get('733312455589101679').channels.cache.get(message.channel.id)
     var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`)
