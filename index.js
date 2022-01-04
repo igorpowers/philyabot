@@ -208,7 +208,7 @@ async function clear(message)
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
-        message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
+        message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
           setTimeout(function () {
             sent.delete();
