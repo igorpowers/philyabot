@@ -190,18 +190,18 @@ async function execute(message, serverQueue) {
 
 function name(message)
 {
-  var regex = message.content.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
+  var regex = message.content.match(/!nick\s(?<name>.+)/)
   if (regex){
-    var chan = client.guilds.cache.get('733312455589101679').channels.cache.get(message.channel.id)
-    var id = client.users.cache.find(u => u.tag === `${regex.groups.name}`).id
-    msg.channel.send(`Ник <@${id}> изменен на ${regex.groups.newname}`)
-    var mentionedMember = chan.guild.members.cache.get(id)
-    mentionedMember.setNickname(`${regex.groups.newname}`)
+    const User = client.users.cache.get(regex.groups.name)
+    if (User) {
+    message.channel.send(User.tag)
+    } else {
+    message.channel.send("User not found.")
+    }
   }
 }
 
-async function clear(message)
-{
+async function clear(message){
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
   var regex = message.content.match(/!clear\s(?<count>.+)/)
   if (regex){ 
@@ -212,9 +212,9 @@ async function clear(message)
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
           setTimeout(function () {
-            sent.delete();
-          }, 2500);
-        });
+            sent.delete()
+          }, 2500)
+        })
       })
     }
   }
@@ -230,8 +230,7 @@ function skip(message, serverQueue) {
   serverQueue.connection.dispatcher.end()
 }
 
-function role(message, user)
-{
+function role(message, user){
   if (user.id === '310805620775190530')
   {
     var guild = message.guild
@@ -241,8 +240,7 @@ function role(message, user)
   }
 }
 
-function unrole(message, user)
-{
+function unrole(message, user){
   if (user.id === '310805620775190530')
   {
     var guild = message.guild
