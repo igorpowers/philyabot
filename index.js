@@ -83,7 +83,7 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 })
 
 client.on('message', async message => {
-
+  var guild = messageReaction.message.guild
   if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096') ) return
 
   const serverQueue = queue.get(message.guild.id)
@@ -104,7 +104,7 @@ client.on('message', async message => {
       unrole(message, message.author)
       return
   }
-    else if (message.content.startsWith(`${prefix}clear`) && message.author.roles.find(r => r.name === "Warden")){
+    else if (message.content.startsWith(`${prefix}clear`) && guild.roles.cache.find(role => role.name === 'Warden')){
       clear(message)
       return
 /*
