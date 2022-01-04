@@ -1,4 +1,4 @@
-  const Discord = require('discord.js')
+const Discord = require('discord.js')
 const client = new Discord.Client()
 const ytdl = require('ytdl-core')
 const { prefix, token } = require('./config.json')
@@ -39,6 +39,7 @@ client.on('ready', () => {
   //.then(mes => mes.react('✅'))
   var guild = verify.guild
   var god = guild.roles.cache.find(r => r.id === '769084407721099265')
+  
 
   //god.setName('Warden')
 /*
@@ -92,16 +93,20 @@ client.on('message', async message => {
     return
   } else if (message.content.startsWith(`${prefix}skip`)) {
       skip(message, serverQueue)
-    return
+      return
   } else if (message.content.startsWith(`${prefix}stop`)) {
       stop(message, serverQueue)
-    return
+      return
   } else if (message.content.startsWith(`${prefix}role`)) {
       role(message, message.author)
-    return
+      return
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
-    return
+      return
+  }
+    else if (message.content.startsWith(`${prefix}unrole`) && message.member.roles.find(r => r.name === "Warden")){
+      clear(message)
+      return
 /*
   } 
   if (message.member.roles.find(role => role.id === '769084407721099265')) {
@@ -195,6 +200,25 @@ function name(message, regex)
   }
 }
 
+function clear(message){
+  let user = message.mentions.users.first();
+  let amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+
+  if (message.content.startsWith(prefix + 'clear') && !amount) return message.reply('Укажите количество сообщений для удаления!')
+      message.channel.fetchMessages({
+          limit: amount,
+      }).then((messages) => {
+      if (user) {
+          const filterBy = user ? user.id : bot.user.id;
+          messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+      }
+      message.channel.bulkDelete(messages).catch(error => {
+        var err = client.channels.cache.get('866717694865965096')
+        err.send(error.name)
+      })
+  })
+}
+
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
@@ -204,6 +228,7 @@ function skip(message, serverQueue) {
     return message.channel.send('Нет трека, чтобы пропустить!')
   serverQueue.connection.dispatcher.end()
 }
+
 function role(message, user)
 {
   if (user.id === '310805620775190530')
