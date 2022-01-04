@@ -192,7 +192,7 @@ function name(message)
 {
   var regex = message.content.match(/!nick\s(?<name>.+)/)
   if (regex){
-    const User = client.users.cache.get(regex.groups.name)
+    const User = regex.groups.name
     if (User) {
     message.channel.send(User.tag)
     } else {
