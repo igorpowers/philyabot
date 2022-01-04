@@ -84,7 +84,7 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 
 client.on('message', async message => {
   var guild = message.guild
-  if (message.author.bot || !message.content.startsWith(prefix) || (message.channel.id!=='908891600619442196' && message.channel.id!=='866717694865965096')) return
+  if (message.author.bot || !message.content.startsWith(prefix)) return
 
   const serverQueue = queue.get(message.guild.id)
 
@@ -103,7 +103,7 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
       return
-  } else if (message.content.startsWith(`${prefix}clear`) && (message.channel.id == '907612033992781865' || message.channel.id == "908891600619442196" || message.channel.id == "866717694865965096")) {
+  } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
   /*
@@ -209,9 +209,10 @@ async function clear(message)
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
         message.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
-        .catch({
-          var err = client.channels.cache.get('866717694865965096')
-        	err.send(error.name)
+        .then((sent) => {
+          setTimeout(function () {
+            sent.delete();
+          }, 2500);
         });
       })
     }
