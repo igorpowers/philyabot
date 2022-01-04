@@ -103,17 +103,16 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}unrole`)) {
       unrole(message, message.author)
       return
-  }
-    else if (message.content.startsWith(`${prefix}clear`) && guild.roles.cache.find(role => role.name === 'Warden')){
+  } else if (message.content.startsWith(`${prefix}clear`)){
       clear(message)
       return
-/*
+  /*
   } 
   if (message.member.roles.find(role => role.id === '769084407721099265')) {
     var mas = msg.content
     var regex = mas.match(/!nick\s(?<name>.+)\s(?<newname>.+)/)
     name(mas,regex)
-*/
+  */
     } else return
     
   /*
@@ -200,25 +199,20 @@ function name(message, regex)
   }
 }
 
-function clear(message){
-  let user = message.mentions.users.first();
-  let amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
-
-  if (message.content.startsWith(prefix + 'clear') && !amount) return message.reply('Укажите количество сообщений для удаления!')
-      message.channel.fetchMessages({
-          limit: amount,
-      }).then((messages) => {
-      if (user) {
-          const filterBy = user ? user.id : bot.user.id;
-          messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
-      }
-      message.channel.bulkDelete(messages).catch(error => {
-        var err = client.channels.cache.get('866717694865965096')
-        err.send(error.name)
+function clear(msg)
+{
+  if (!msg.author.hasPermission('MANAGE_MESSAGES')) return msg.channel.send("Не хватает прав для использования этой команды",);
+  var regex = msg.content.match(/!clear\s(?<count>.+)/)
+  if (regex){ 
+    let amount = parseInt(regex.groups.count)
+    if(isNaN(amount) || !Number.isInteger(parseInt(amount))) return msg.channel.send("Введите целое число!")
+    if (Number.isInteger(parseInt(amount))){
+      await msg.channel.bulkDelete(parseInt(amount) + 1, false).then((_message) => {
+        msg.channel.send(`\`${_message.size}\` сообщений удалено :broom:`)
       })
-  })
+    }
+  }
 }
-
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
