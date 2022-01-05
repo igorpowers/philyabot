@@ -109,11 +109,7 @@ client.on('message', async message => {
       return
   } else if (message.content.startsWith(`${prefix}id`)) {
       id(message)
-      return
-  } else if (message.content.startsWith(`${prefix}name`)) {
-    name(message)
-    return
-  
+      return  
   } else return
     
   /*
