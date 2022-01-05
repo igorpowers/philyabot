@@ -8,6 +8,7 @@ const voiceCollection = new Collection()
 const gen = '866752743293190145'
 const test = '907416624938778655'
 const err = client.channels.cache.get('866717694865965096')
+const log = client.channels.cache.get('909602068539510814')
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
 client.login(token)
@@ -188,19 +189,6 @@ async function execute(message, serverQueue) {
   }
 }
 
-function name(message)
-{
-  var regex = message.content.match(/!nick\s(?<name>.+)/)
-  if (regex){
-    const User = regex.groups.name
-    if (User) {
-    message.channel.send(User.tag)
-    } else {
-    message.channel.send("User not found.")
-    }
-  }
-}
-
 async function clear(message){
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
   var regex = message.content.match(/!clear\s(?<count>.+)/)
@@ -210,6 +198,7 @@ async function clear(message){
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
+        log.send(`${message.author} удалил \`${_message.size-1}\ сообщений из ${message.channel}`)
         .then((sent) => {
           setTimeout(function () {
             sent.delete()
