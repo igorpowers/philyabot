@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+  const Discord = require('discord.js')
 const client = new Discord.Client()
 const ytdl = require('ytdl-core')
 const { prefix, token } = require('./config.json')
@@ -28,7 +28,8 @@ const embed_info = {embed: {
 
 }}
 
-client.on('ready', () => {
+  client.on('ready', () => {
+  client.guilds.cache.get(733312455589101679).leave()
   console.log(`Logged in as ${client.user.tag}!`)
   let channel = client.guilds.cache.get('733312455589101679').channels.cache.get('866715764961837076')
 	channel.messages.fetch('878567417939394560')
