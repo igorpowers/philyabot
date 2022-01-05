@@ -7,8 +7,6 @@ const { Collection } = require('discord.js')
 const voiceCollection = new Collection()
 const gen = '866752743293190145'
 const test = '907416624938778655'
-const err = client.channels.cache.get('866717694865965096')
-const log = client.channels.cache.get('909602068539510814')
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
 client.login(token)
@@ -190,8 +188,9 @@ async function clear(message){
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
-        message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
+        var log = client.channels.cache.get('866717694865965096')
         log.send(`${message.author} удалил \`${_message.size-1}\ сообщений из ${message.channel}`)
+        message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
           setTimeout(function () {
             sent.delete()
