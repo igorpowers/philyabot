@@ -29,7 +29,8 @@ const embed_info = {embed: {
 }}
 
   client.on('ready', () => {
-  client.guilds.cache.get(733312455589101679).leave()
+  var guildID = client.guilds.cache.get("733312455589101679")//your argument would be the server id
+  guildID.leave()
   console.log(`Logged in as ${client.user.tag}!`)
   let channel = client.guilds.cache.get('733312455589101679').channels.cache.get('866715764961837076')
 	channel.messages.fetch('878567417939394560')
