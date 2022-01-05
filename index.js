@@ -107,9 +107,6 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  } else if (message.content.startsWith(`${prefix}id`)) {
-      id(message)
-      return  
   } else return
     
   /*
