@@ -39,7 +39,7 @@ const embed_info = {embed: {
   verify.messages.fetch('928456409685831740')
   //.then(mes => mes.react('✅'))
   //var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === '928446392958083112')
+  //var god = guild.roles.cache.find(r => r.id === '928446392958083112')
   
 /*
   god.setName('Warden')
@@ -64,7 +64,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     }).then(channel=>{
       newState.setChannel(channel)  
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911020666696912927' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699') oldState.channel.delete()
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '928246458220691510' && oldState.channel?.id != '911020666696912927' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699') oldState.channel.delete()
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
