@@ -192,7 +192,7 @@ async function clear(message){
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
-        var log = client.channels.cache.get('928446284107497472 ')
+        var log = client.channels.cache.get('928446284107497472')
         log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
