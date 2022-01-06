@@ -29,13 +29,14 @@ const embed_info = {embed: {
   client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
   const verify = client.channels.cache.get('928443078128332850') 
-  /*
-  verify.send(embed_info)
+  
+  /*verify.send(embed_info)
   .then((sent) => {
     verify.messages.fetch(sent.id)
     .then(mes => mes.react('✅'))
   })
-  //verify.messages.fetch('878567417939394560')
+  */
+  verify.messages.fetch('928456409685831740')
   //.then(mes => mes.react('✅'))
   //var guild = verify.guild
   var god = guild.roles.cache.find(r => r.id === '928446392958083112')
