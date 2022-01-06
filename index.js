@@ -5,8 +5,7 @@ const { prefix, token } = require('./config.json')
 const queue = new Map()
 const { Collection } = require('discord.js')
 const voiceCollection = new Collection()
-const gen = '866752743293190145'
-const test = '907416624938778655'
+const gen = '928447082652659722'
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
 client.login(token)
@@ -26,33 +25,34 @@ const embed_info = {embed: {
 :eye: Оставьте реакцию ниже, чтобы получить доступ ко всем текстовым и голосовым каналам
 :warning: Оставляя эту реакцию, Вы соглашаетесь с правилами нашего сервера :warning:`,
 
-}}
-
+}}  
   client.on('ready', () => {
-  var guildID = client.guilds.cache.get("733312455589101679")
-  guildID.leave()
   console.log(`Logged in as ${client.user.tag}!`)
-  let channel = client.guilds.cache.get('733312455589101679').channels.cache.get('866715764961837076')
-	channel.messages.fetch('878567417939394560')
-  const verify = client.channels.cache.get('866715764961837076') 
-  //verify.send(embed_info)
-  verify.messages.fetch('878567417939394560')
+  const verify = client.channels.cache.get('928443078128332850') 
+  verify.send(embed_info)
+  .then((sent) => {
+    verify.messages.fetch(sent.id)
+    .then(mes => mes.react('✅'))
+  })
+  //verify.messages.fetch('878567417939394560')
   //.then(mes => mes.react('✅'))
-  var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === '769084407721099265')
+  //var guild = verify.guild
+  var god = guild.roles.cache.find(r => r.id === '928446392958083112')
   
-
-  //god.setName('Warden')
 /*
+  god.setName('Warden')
   guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
+
+  var guildID = client.guilds.cache.get("928446392958083112")
+  guildID.leave()
 */
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
   //const user = await client.users.fetch(newState.id)
   //const member  = newState.guild.member(user)
-  const swfchannel = '909917024434683985'
-  const categoryid = '733312455589101681'
+  const swfchannel = '928445831026212935'
+  const categoryid = '928246458220691507'
 
   if (newState.channel?.id == swfchannel) {
     newState.guild.channels.create(`${newState.member.user.username}'s  channel`, {
@@ -89,13 +89,13 @@ client.on('message', async message => {
 
   const serverQueue = queue.get(message.guild.id)
 
-  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='908891600619442196') {
+  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='928445942087163955') {
       execute(message, serverQueue)
     return
   } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='908891600619442196') {
       skip(message, serverQueue)
       return
-  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='908891600619442196') {
+  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='928445942087163955') {
       stop(message, serverQueue)
       return
   } else if (message.content.startsWith(`${prefix}role`)) {
@@ -190,7 +190,7 @@ async function clear(message){
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
-        var log = client.channels.cache.get('909602068539510814')
+        var log = client.channels.cache.get('928446284107497472 ')
         log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
@@ -217,7 +217,7 @@ function role(message, user){
   if (user.id === '310805620775190530')
   {
     var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
+    var god = guild.roles.cache.find(r => r.id === '928446392958083112')	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
     message.delete()
   }
@@ -227,7 +227,7 @@ function unrole(message, user){
   if (user.id === '310805620775190530')
   {
     var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
+    var god = guild.roles.cache.find(r => r.id === '928446392958083112')	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
     message.delete()
   }
