@@ -29,6 +29,7 @@ const embed_info = {embed: {
   client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
   const verify = client.channels.cache.get('928443078128332850') 
+  /*
   verify.send(embed_info)
   .then((sent) => {
     verify.messages.fetch(sent.id)
