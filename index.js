@@ -30,14 +30,13 @@ const embed_info = {embed: {
   console.log(`Logged in as ${client.user.tag}!`)
   const verify = client.channels.cache.get('865213217378271232') 
   
-  verify.send(embed_info)
+  /*verify.send(embed_info)
   .then((sent) => {
     verify.messages.fetch(sent.id)
     .then(mes => mes.react('✅'))
   })
-  
-  //verify.messages.fetch('928456409685831740')
-  //.then(mes => mes.react('✅'))
+  */
+
   //var guild = verify.guild
   //var god = guild.roles.cache.find(r => r.id === '865213850332299285')
   /*
@@ -67,7 +66,7 @@ const embed_info = {embed: {
 })
 */
 client.on('messageReactionAdd', (messageReaction, user) => {
-	if(messageReaction.message.id != '928456409685831740') return
+	if(messageReaction.message.id != '941459810052882452') return
 	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')	
@@ -76,7 +75,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 })
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-	if(messageReaction.message.id != '928456409685831740') return
+	if(messageReaction.message.id != '941459810052882452') return
 	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')
