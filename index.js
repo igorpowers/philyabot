@@ -44,10 +44,10 @@ const embed_info = {embed: {
 /*
   god.setName('Warden')
   guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-
-  var guildID = client.guilds.cache.get("928446392958083112")
-  guildID.leave()
 */
+  var guildID = client.guilds.cache.get("928246457662861334")
+  guildID.leave()
+
 })
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -90,7 +90,6 @@ client.on('message', async message => {
   if (message.author.bot || !message.content.startsWith(prefix)) return
 
   const serverQueue = queue.get(message.guild.id)
-
   if (message.content.startsWith(`${prefix}play`) && message.channel.id=='928445942087163955') {
       execute(message, serverQueue)
     return
@@ -109,14 +108,13 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  } else return
-    
-  /*
+  }
+
   if (msg.channel == gen && !msg.author.bot) {
     var pred = msg.content
     var regex = pred.match(/Название:(?<name>.+)\sSID:(?<sid>.+)\sОписание:(?<desc>.+)/)
     if (regex) {
-      trello.addCard(`${regex.groups.name} (${regex.groups.sid})`, regex.groups.desc, '60c30d181acf602aa3fc2c66', (error, trelloCard) => {
+      trello.addCard(`${regex.groups.name} (${regex.groups.sid})`, regex.groups.desc, '62057704329b035c628c6b67', (error, trelloCard) => {
         msg.author.send('Ваше предложение отправлено старшей администрации, спасибо за помощь проекту :blue_heart:', trelloCard)
         if (error) {
         	var err = client.channels.cache.get('866717694865965096')
@@ -131,7 +129,7 @@ client.on('message', async message => {
     }
 
   }
-  */
+
 })
 
 async function execute(message, serverQueue) {
