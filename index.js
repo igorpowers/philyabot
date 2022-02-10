@@ -28,34 +28,32 @@ const embed_info = {embed: {
 }}  
   client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  const verify = client.channels.cache.get('928443078128332850') 
+  const verify = client.channels.cache.get('865213217378271232') 
   
-  /*verify.send(embed_info)
+  verify.send(embed_info)
   .then((sent) => {
     verify.messages.fetch(sent.id)
     .then(mes => mes.react('✅'))
   })
-  */
-  verify.messages.fetch('928456409685831740')
+  
+  //verify.messages.fetch('928456409685831740')
   //.then(mes => mes.react('✅'))
   //var guild = verify.guild
-  var god = guild.roles.cache.find(r => r.id === '865213850332299285')
-  
-
-  //god.setName('Warden')
+  //var god = guild.roles.cache.find(r => r.id === '865213850332299285')
+  /*
+  god.setName('Warden')
   guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-/*
   var guildID = client.guilds.cache.get("928246457662861334")
   guildID.leave()
   */
 
 })
 
-client.on('voiceStateUpdate', async (oldState, newState) => {
+/*client.on('voiceStateUpdate', async (oldState, newState) => {
   //const user = await client.users.fetch(newState.id)
   //const member  = newState.guild.member(user)
-  const swfchannel = '928445831026212935'
-  const categoryid = '928246458220691507'
+  const swfchannel = '941457489453547600'
+  const categoryid = '871730310889488405'
 
   if (newState.channel?.id == swfchannel) {
     newState.guild.channels.create(`${newState.member.user.username}'s  channel`, {
@@ -67,7 +65,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     })
   } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '928246458220691510' && oldState.channel?.id != '911020666696912927' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699') oldState.channel.delete()
 })
-
+*/
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '928456409685831740') return
 	if (messageReaction.emoji.name == '✅') {
