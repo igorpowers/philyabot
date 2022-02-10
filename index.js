@@ -39,14 +39,15 @@ const embed_info = {embed: {
   verify.messages.fetch('928456409685831740')
   //.then(mes => mes.react('✅'))
   //var guild = verify.guild
-  //var god = guild.roles.cache.find(r => r.id === '928446392958083112')
+  var god = guild.roles.cache.find(r => r.id === '865213850332299285')
   
-/*
-  god.setName('Warden')
+
+  //god.setName('Warden')
   guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-*/
+/*
   var guildID = client.guilds.cache.get("928246457662861334")
   guildID.leave()
+  */
 
 })
 
