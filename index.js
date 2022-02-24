@@ -42,8 +42,8 @@ const embed_info = {embed: {
   
   //god.setName('Warden')
   //guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-  var guildID = client.guilds.cache.get("865212581135515658")
-  guildID.leave()
+  //var guildID = client.guilds.cache.get("865212581135515658")
+  //guildID.leave()
   
 
 })
