@@ -39,12 +39,12 @@ const embed_info = {embed: {
 
   //var guild = verify.guild
   //var god = guild.roles.cache.find(r => r.id === '865213850332299285')
-  /*
-  god.setName('Warden')
-  guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-  var guildID = client.guilds.cache.get("928246457662861334")
+  
+  //god.setName('Warden')
+  //guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
+  var guildID = client.guilds.cache.get("865212581135515658")
   guildID.leave()
-  */
+  
 
 })
 
