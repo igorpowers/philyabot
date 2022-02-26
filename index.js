@@ -28,7 +28,7 @@ const embed_info = {embed: {
 }}  
   client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  const verify = client.channels.cache.get('865213217378271232') 
+  //const verify = client.channels.cache.get('865213217378271232') 
   
   /*verify.send(embed_info)
   .then((sent) => {
@@ -65,7 +65,7 @@ const embed_info = {embed: {
   } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '928246458220691510' && oldState.channel?.id != '911020666696912927' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699') oldState.channel.delete()
 })
 */
-client.on('messageReactionAdd', (messageReaction, user) => {
+/*client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '941459810052882452') return
 	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
@@ -82,19 +82,20 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
+*/
 
 client.on('message', async message => {
   var guild = message.guild
   if (message.author.bot || !message.content.startsWith(prefix)) return
 
   const serverQueue = queue.get(message.guild.id)
-  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='928445942087163955') {
+  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='928246458220691508') {
       execute(message, serverQueue)
     return
-  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='928445942087163955') {
+  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='928246458220691508') {
       skip(message, serverQueue)
       return
-  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='928445942087163955') {
+  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='928246458220691508') {
       stop(message, serverQueue)
       return
   } else if (message.content.startsWith(`${prefix}role`)) {
@@ -109,6 +110,7 @@ client.on('message', async message => {
   }
 
   if (msg.channel == gen && !msg.author.bot) {
+    /*
     var pred = msg.content
     var regex = pred.match(/Название:(?<name>.+)\sSID:(?<sid>.+)\sОписание:(?<desc>.+)/)
     if (regex) {
@@ -121,10 +123,11 @@ client.on('message', async message => {
         }
       }) 
     }
+)
     else {  
       msg.delete()
       msg.author.send('Ваше предложение было удалено, так как не соответствовало требованиям по оформлению.')
-    }
+    }*/
 
   }
 
@@ -179,7 +182,7 @@ async function execute(message, serverQueue) {
     return message.channel.send(`${song.title} добавлена в очередь!`)
   }
 }
-
+/
 async function clear(message){
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
   var regex = message.content.match(/!clear\s(?<count>.+)/)
@@ -188,7 +191,7 @@ async function clear(message){
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
-        var log = client.channels.cache.get('928446284107497472')
+        var log = client.channels.cache.get('928246458220691508')
         log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
