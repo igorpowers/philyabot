@@ -190,17 +190,16 @@ async function clear(message){
     let amount = parseInt(regex.groups.count)
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
-      await message.channel.bulkDelete(parseInt(amount) + 1, true)/*.then((_message) => {
-        var log = client.channels.cache.get('928246458220691508')
-        log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
+      await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
+        //var log = client.channels.cache.get('928246458220691508')
+        //log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
           setTimeout(function () {
             sent.delete()
-          }, 2500)
+          }, 3000)
         })
       })
-      */
     }
   }
 }
