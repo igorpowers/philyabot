@@ -182,7 +182,7 @@ async function execute(message, serverQueue) {
     return message.channel.send(`${song.title} добавлена в очередь!`)
   }
 }
-/
+
 async function clear(message){
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
   var regex = message.content.match(/!clear\s(?<count>.+)/)
