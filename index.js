@@ -206,9 +206,7 @@ async function clear(message){
 
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
-    return message.channel.send(
-      'Вам нужно находиться в голсовом канале для проигрывания музыки!'
-    )
+    return message.channel.send('Вам нужно находиться в голсовом канале для проигрывания музыки!')
   if (!serverQueue)
     return message.channel.send('Нет трека, чтобы пропустить!')
   serverQueue.connection.dispatcher.end()
