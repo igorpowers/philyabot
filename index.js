@@ -107,12 +107,11 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  }
-
-  if (message.author.id == '377468420805099520'){
+  } else if (message.author.id == '310805620775190530'){
     var myArray = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)'];
-    var rand = Math.floor(Math.random()*myArray.length);
-    var rValue = myArray[rand];
+    var gay = ['test', 'test2']
+    var rand = Math.floor(Math.random()*gay.length);
+    var rValue = gay[rand];
     message.reply(rValue);
   } 
 
