@@ -107,15 +107,6 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  } else if (message.content.startsWith('YES')) {
-      msg.reply("Хуес")
-      return
-  } else if (message.content.startsWith('yes')) {
-      msg.reply("Хуес")
-      return
-  } else if (message.content.startsWith('Yes')) {
-      msg.reply("Хуес")
-      return
   }
 
   if (message.author.id == '377468420805099520'){
