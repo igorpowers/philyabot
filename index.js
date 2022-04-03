@@ -107,6 +107,15 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
+  } else if (message.content.startsWith('YES')) {
+      msg.reply("Хуес")
+      return
+  } else if (message.content.startsWith('yes')) {
+      msg.reply("Хуес")
+      return
+  } else if (message.content.startsWith('Yes')) {
+      msg.reply("Хуес")
+      return
   }
 
   if (message.author.id == '377468420805099520'){
@@ -116,7 +125,7 @@ client.on('message', async message => {
     msg.reply(rValue);
   }
 
-  if (msg.channel == gen && !msg.author.bot) {
+  if (msg.channel == gen) {
     /*
     var pred = msg.content
     var regex = pred.match(/Название:(?<name>.+)\sSID:(?<sid>.+)\sОписание:(?<desc>.+)/)
