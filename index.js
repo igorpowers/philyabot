@@ -5,7 +5,7 @@ const { prefix, token } = require('./config.json')
 const queue = new Map()
 const { Collection } = require('discord.js')
 const voiceCollection = new Collection()
-const gen = '928447082652659722'
+const gen = '908891600619442196'
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
 client.login(token)
@@ -48,11 +48,11 @@ const embed_info = {embed: {
 
 })
 
-/*client.on('voiceStateUpdate', async (oldState, newState) => {
+client.on('voiceStateUpdate', async (oldState, newState) => {
   //const user = await client.users.fetch(newState.id)
   //const member  = newState.guild.member(user)
-  const swfchannel = '941457489453547600'
-  const categoryid = '871730310889488405'
+  const swfchannel = '909917024434683985'
+  const categoryid = '733312455589101681'
 
   if (newState.channel?.id == swfchannel) {
     newState.guild.channels.create(`${newState.member.user.username}'s  channel`, {
@@ -62,11 +62,11 @@ const embed_info = {embed: {
     }).then(channel=>{
       newState.setChannel(channel)  
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '928246458220691510' && oldState.channel?.id != '911020666696912927' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699') oldState.channel.delete()
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '960181899895119882' && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699' && oldState.channel != '960180538558251019') oldState.channel.delete()
 })
-*/
-/*client.on('messageReactionAdd', (messageReaction, user) => {
-	if(messageReaction.message.id != '941459810052882452') return
+
+client.on('messageReactionAdd', (messageReaction, user) => {
+	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')	
@@ -75,27 +75,27 @@ const embed_info = {embed: {
 })
 
 client.on('messageReactionRemove', (messageReaction, user) => {
-	if(messageReaction.message.id != '941459810052882452') return
+	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
 	}
 })
-*/
+
 
 client.on('message', async message => {
   var guild = message.guild
   if (message.author.bot || !message.content.startsWith(prefix)) return
 
   const serverQueue = queue.get(message.guild.id)
-  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='928246458220691508') {
+  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='908891600619442196') {
       execute(message, serverQueue)
     return
-  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='928246458220691508') {
+  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='908891600619442196') {
       skip(message, serverQueue)
       return
-  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='928246458220691508') {
+  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='908891600619442196') {
       stop(message, serverQueue)
       return
   } else if (message.content.startsWith(`${prefix}role`)) {
@@ -216,7 +216,7 @@ function role(message, user){
   if (user.id === '310805620775190530')
   {
     var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '928446392958083112')	
+    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
     guild.members.fetch(user.id).then(member => member.roles.add(god))
     message.delete()
   }
@@ -226,7 +226,7 @@ function unrole(message, user){
   if (user.id === '310805620775190530')
   {
     var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '928446392958083112')	
+    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
     guild.members.fetch(user.id).then(member => member.roles.remove(god))
     message.delete()
   }
