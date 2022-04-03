@@ -28,7 +28,7 @@ const embed_info = {embed: {
 }}  
   client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  //const verify = client.channels.cache.get('865213217378271232') 
+  const verify = client.channels.cache.get('866715764961837076') 
   
   /*verify.send(embed_info)
   .then((sent) => {
