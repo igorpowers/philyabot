@@ -113,8 +113,8 @@ client.on('message', async message => {
     var myArray = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)'];
     var rand = Math.floor(Math.random()*myArray.length);
     var rValue = myArray[rand];
-    msg.reply(rValue);
-  }
+    message.reply(rValue);
+  } 
 
   if (msg.channel == gen) {
     /*
