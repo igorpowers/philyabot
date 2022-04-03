@@ -109,6 +109,13 @@ client.on('message', async message => {
       return
   }
 
+  if (msg.author.id == '377468420805099520'){
+    var myArray = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)'];
+    var rand = Math.floor(Math.random()*myArray.length);
+    var rValue = myArray[rand];
+    msg.reply(rValue);
+  }
+
   if (msg.channel == gen && !msg.author.bot) {
     /*
     var pred = msg.content
@@ -191,8 +198,8 @@ async function clear(message){
     if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true).then((_message) => {
-        //var log = client.channels.cache.get('928246458220691508')
-        //log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
+        var log = client.channels.cache.get('928246458220691508')
+        log.send(`${message.author} удалил \`${_message.size-1}\` сообщений из ${message.channel}`)
         message.channel.send(`\`${_message.size-1}\` сообщений удалено :broom:`)
         .then((sent) => {
           setTimeout(function () {
