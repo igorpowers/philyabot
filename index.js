@@ -109,7 +109,7 @@ client.on('message', async message => {
       return
   }
 
-  if (msg.author.id == '377468420805099520'){
+  if (message.author.id == '377468420805099520'){
     var myArray = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)'];
     var rand = Math.floor(Math.random()*myArray.length);
     var rValue = myArray[rand];
