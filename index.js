@@ -28,9 +28,10 @@ const embed_info = {embed: {
 }}  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  const verify = client.channels.cache.get('866715764961837076') 
+  const verify = client.channels.cache.get('878567417939394560') 
   
-  /*verify.send(embed_info)
+  /*
+  verify.send(embed_info)
   .then((sent) => {
     verify.messages.fetch(sent.id)
     .then(mes => mes.react('✅'))
@@ -70,6 +71,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
+    console.log('ping')
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')	
 		guild.members.fetch(user.id).then(member => member.roles.add(role))
@@ -79,9 +81,11 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
 	if (messageReaction.emoji.name == '✅') {
+    console.log('pong')
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')
 		guild.members.fetch(user.id).then(member => member.roles.remove(role))
+
 	}
 })
 
