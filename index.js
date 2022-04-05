@@ -91,13 +91,13 @@ client.on('message', async message => {
   if (message.author.bot || !message.content.startsWith(prefix)) return
 
   const serverQueue = queue.get(message.guild.id)
-  if (message.content.startsWith(`${prefix}play`) && message.channel.id=='908891600619442196') {
+  if (message.content.startsWith(`${prefix}play`) && message.channel.id==='908891600619442196') {
       execute(message, serverQueue)
     return
-  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id=='908891600619442196') {
+  } else if (message.content.startsWith(`${prefix}skip`) && message.channel.id==='908891600619442196') {
       skip(message, serverQueue)
       return
-  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id=='908891600619442196') {
+  } else if (message.content.startsWith(`${prefix}stop`) && message.channel.id==='908891600619442196') {
       stop(message, serverQueue)
       return
   } else if (message.content.startsWith(`${prefix}role`)) {
@@ -112,8 +112,8 @@ client.on('message', async message => {
   } else if(message.author.id == '377468420805099520'){
       ans(message)
       return
-  } else if(message.content.startsWith(`${prefix}restart`)){
-      restart(message)
+  } else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
+      restart(message, message.author)
       return
   
   }
@@ -228,8 +228,8 @@ function ans(message){
     var rValue = gay[rand];
     message.reply(rValue);
 }
-async function restart(client, message,args){
-  if (message.author.id != '310805620775190530')
+async function restart(message, user){
+  if (user.id != '310805620775190530')
     return message.channel.send('Не хватает прав для использования этой команды')
   await message.channel.send('Бот перезапускается...')
   process.exit;
