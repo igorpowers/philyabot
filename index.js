@@ -236,7 +236,8 @@ async function restart(message, user){
     var log = client.channels.cache.get('909602068539510814')
     log.send(`${message.author} перезапустил бота`)
   })
-  process.exit;
+  client.destroy()
+  client.login(token)
 }
 
 function role(message, user){
