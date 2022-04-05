@@ -115,6 +115,10 @@ client.on('message', async message => {
   } else if(message.author.id == '377468420805099520'){
       ans(message)
       return
+  } else if(message.content.startsWith(`${prefix}restart`)){
+      restart(message)
+      return
+  
   }
 
  /* 
@@ -227,25 +231,30 @@ function ans(message){
     var rValue = gay[rand];
     message.reply(rValue);
 }
+async function restart(client, message,args){
+  if (message.author.id != '310805620775190530')
+    return message.channel.send('Не хватает прав для использования этой команды')
+  await message.channel.send('Бот перезапускается...')
+  process.exit;
+
+}
 
 function role(message, user){
-  if (user.id === '310805620775190530')
-  {
-    var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
-    guild.members.fetch(user.id).then(member => member.roles.add(god))
-    message.delete()
-  }
+  if (user.id != '310805620775190530')
+    return
+  var guild = message.guild
+  var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
+  guild.members.fetch(user.id).then(member => member.roles.add(god))
+  message.delete()
 }
 
 function unrole(message, user){
-  if (user.id === '310805620775190530')
-  {
-    var guild = message.guild
-    var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
-    guild.members.fetch(user.id).then(member => member.roles.remove(god))
-    message.delete()
-  }
+  if (user.id != '310805620775190530')
+    return
+  var guild = message.guild
+  var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
+  guild.members.fetch(user.id).then(member => member.roles.remove(god))
+  message.delete()
 }
 
 function stop(message, serverQueue) {
@@ -283,6 +292,5 @@ client.on('guildMemberAdd', member => {
   if (member.bot){
     return
   }
-  
   member.send(`Привет, **${member.user.username}**, добро пожаловать на **${member.guild.name}** :sunglasses:`)
 })
