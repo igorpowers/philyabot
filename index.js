@@ -70,7 +70,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
-	if (messageReaction.emoji.name == ':white_check_mark:') {
+	if (messageReaction.emoji.name === '✅') {
     console.log('ping')
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')	
@@ -80,7 +80,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '878567417939394560') return
-	if (messageReaction.emoji.name == ':white_check_mark:') {
+	if (messageReaction.emoji.name === '✅') {
     console.log('pong')
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name === 'Verified')
