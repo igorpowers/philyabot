@@ -238,6 +238,7 @@ async function restart(message, user){
   })
   client.destroy()
   client.login(token)
+  console.log(`Logged in as ${client.user.tag}!`)
   var botcommand = client.channels.cache.get('908891600619442196')
     botcommand.send('Готов вкалывать :upside_down:')
 }
