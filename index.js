@@ -63,11 +63,8 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       newState.setChannel(channel)
       var newc = newState.channel?.id
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '960181899895119882' && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699' && oldState.channel != '960180538558251019')
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id == categoryid && !oldState.channel?.members.size && oldState.channel?.id != '960181899895119882' && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699' && oldState.channel != '960180538558251019')
       oldState.channel.delete()
-    else if (newState.channel?.id == swfchannel && oldState.channel?.id == newc)
-      oldState.channel.delete()
-      console.log("gay")
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
