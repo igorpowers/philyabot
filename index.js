@@ -26,7 +26,7 @@ const embed_info = {embed: {
 :warning: Оставляя эту реакцию, Вы соглашаетесь с правилами нашего сервера :warning:`,
 
 }}  
-  client.on('ready', () => {
+client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
   const verify = client.channels.cache.get('866715764961837076') 
   
@@ -238,6 +238,10 @@ async function restart(message, user){
   })
   client.destroy()
   client.login(token)
+  client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`)
+    const verify = client.channels.cache.get('866715764961837076')  
+  })
 }
 
 function role(message, user){
