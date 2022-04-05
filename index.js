@@ -61,13 +61,13 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       userLimit: 4,
     }).then(channel=>{
       newState.setChannel(channel)
-      var newc = channel.id
+      var newc = newState.channel?.id
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '960181899895119882' && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699' && oldState.channel != '960180538558251019') {
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id==categoryid && !oldState.channel?.members.size && oldState.channel?.id != '960181899895119882' && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699' && oldState.channel != '960180538558251019')
       oldState.channel.delete()
-  } else if (newState.channel?.id == swfchannel && oldState.channel?.id == newc){
+    else if (newState.channel?.id == swfchannel && oldState.channel?.id == newc)
       oldState.channel.delete()
-    }
+      console.log("gay")
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
@@ -112,16 +112,14 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  } else if (message.author.id == '310805620775190530'){
-    var myArray = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)'];
-    var gay = ['test', 'test2']
-    var rand = Math.floor(Math.random()*gay.length);
-    var rValue = gay[rand];
-    message.reply(rValue);
-  } 
+  } else if(message.author.id == '377468420805099520'){
+      ans(message)
+      return
+  }
 
-  if (msg.channel == gen) {
-    /*
+ /* 
+ if (msg.channel == gen) {
+    
     var pred = msg.content
     var regex = pred.match(/Название:(?<name>.+)\sSID:(?<sid>.+)\sОписание:(?<desc>.+)/)
     if (regex) {
@@ -138,10 +136,10 @@ client.on('message', async message => {
     else {  
       msg.delete()
       msg.author.send('Ваше предложение было удалено, так как не соответствовало требованиям по оформлению.')
-    }*/
+    }
 
   }
-
+*/
 })
 
 async function execute(message, serverQueue) {
@@ -221,6 +219,13 @@ function skip(message, serverQueue) {
   if (!serverQueue)
     return message.channel.send('Нет трека, чтобы пропустить!')
   serverQueue.connection.dispatcher.end()
+}
+
+function ans(message){
+    var gay = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)' , 'В школе расскажешь' , 'IQ = -1']
+    var rand = Math.floor(Math.random()*gay.length);
+    var rValue = gay[rand];
+    message.reply(rValue);
 }
 
 function role(message, user){
