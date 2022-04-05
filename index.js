@@ -232,8 +232,11 @@ async function restart(message, user){
   if (user.id != '310805620775190530')
     return message.channel.send('Не хватает прав для использования этой команды')
   await message.channel.send('Бот перезапускается...')
+  .then((_message) => {
+    var log = client.channels.cache.get('909602068539510814')
+    log.send(`${message.author} перезапустил бота`)
+  })
   process.exit;
-
 }
 
 function role(message, user){
