@@ -117,11 +117,11 @@ client.on('message', async message => {
   } else if(message.author.id == '377468420805099520'){
       ans(message)
       return
-  } else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
+  } /*else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
       restart(message, message.author)
       return
   
-  }
+  }*/
 
  /* 
  if (msg.channel == gen) {
@@ -236,6 +236,7 @@ function ans(message){
     var rValue = gay[rand];
     message.reply(rValue);
 }
+/*
 async function restart(message, user){
   if (user.id != '310805620775190530')
     return message.channel.send('Не хватает прав для использования этой команды')
@@ -244,13 +245,14 @@ async function restart(message, user){
     var log = client.channels.cache.get('909602068539510814')
     log.send(`${message.author} перезапустил бота`)
   })
-  */
+  
   client.destroy()
   client.login(token)
   console.log(`Logged in as ${client.user.tag}!`)
   var botcommand = client.channels.cache.get('908891600619442196')
     botcommand.send('Готов вкалывать :upside_down:')
 }
+*/
 
 function role(message, user){
   if (user.id != '310805620775190530')
