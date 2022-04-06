@@ -1,13 +1,18 @@
 const {Collection, Client,Discord} = require('discord.js')
 const client = new Client({
     disableEveryone: true,
-    partials : ["MESSAGE", "CHANNEL", "REACTION"]
+    partials : ['MESSAGE', 'CHANNEL', 'REACTION']
 })
 const ytdl = require('ytdl-core')
 const { prefix, token } = require('./config.json')
 const queue = new Map()
 const voiceCollection = new Collection()
 const gen = '908891600619442196'
+const whitelist = ['310805620775190530'];
+const pidor = ['377468420805099520']
+const channels = ['960181899895119882','909827760174809128', '961248430339022879', '911272705007960124', '911272751703154699']
+const gay = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)' , 'В школе расскажешь' , 'IQ = -1']
+const random = Math.floor(Math.random() * gay.length);
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
 client.login(token)
@@ -45,7 +50,7 @@ client.on('ready', () => {
 
   //god.setName('Warden')
   //guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-  //var guildID = client.guilds.cache.get("865212581135515658")
+  //var guildID = client.guilds.cache.get('865212581135515658')
   //guildID.leave()
   
 
@@ -58,7 +63,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
   const categoryid = '733312455589101681'
 
   if (newState.channel?.id == swfchannel) {
-    newState.guild.channels.create(`${newState.member.user.username}'s  channel`, {
+    newState.guild.channels.create(`Канал ${newState.member.user.username}`, {
       type: 'voice',
       parent: categoryid,
       userLimit: 4,
@@ -66,14 +71,13 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       newState.setChannel(channel)
       var newc = newState.channel?.id
     })
-  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id == categoryid && !oldState.channel?.members.size && oldState.channel?.id != '960181899895119882' && oldState.channel?.id != '909827760174809128' && oldState.channel?.id != '911272705007960124' && oldState.channel?.id != '911272751703154699' && oldState.channel != '960180538558251019')
+  } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id == categoryid && !oldState.channel?.members.size && !channels.includes(oldState.channel?.id))
       oldState.channel.delete()
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
 	if(messageReaction.message.id != '961013501411852379') return
 	if (messageReaction.emoji.name == '✅') {
-    console.log('ping')
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name == 'Verified')	
 		guild.members.fetch(user.id)
@@ -84,7 +88,6 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 client.on('messageReactionRemove', (messageReaction, user) => {
 	if(messageReaction.message.id != '961013501411852379') return
 	if (messageReaction.emoji.name == '✅') {
-    console.log('pong')
     var guild = messageReaction.message.guild
     var role = guild.roles.cache.find(role => role.name == 'Verified')
 		guild.members.fetch(user.id)
@@ -116,7 +119,7 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  } else if(message.author.id == '377468420805099520'){
+  } else if(pidor.includes(message.author.id)){
       ans(message)
       return
   } /*else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
@@ -201,11 +204,11 @@ async function execute(message, serverQueue) {
 }
 
 async function clear(message){
-  if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Не хватает прав для использования этой команды",);
+  if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Не хватает прав для использования этой команды',);
   var regex = message.content.match(/!clear\s(?<count>.+)/)
   if (regex){ 
     let amount = parseInt(regex.groups.count)
-    if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send("Введите целое число меньше 100!")
+    if(isNaN(amount) || !Number.isInteger(parseInt(amount)) || parseInt(amount)>100) return message.channel.send('Введите целое число меньше 100!')
     if (Number.isInteger(parseInt(amount))){
       await message.channel.bulkDelete(parseInt(amount) + 1, true)
       .then((_message) => {
@@ -233,10 +236,7 @@ function skip(message, serverQueue) {
 }
 
 function ans(message){
-    var gay = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)' , 'В школе расскажешь' , 'IQ = -1']
-    var rand = Math.floor(Math.random()*gay.length);
-    var rValue = gay[rand];
-    message.reply(rValue);
+    message.reply(gay[random]);
 }
 /*
 async function restart(message, user){
@@ -257,7 +257,7 @@ async function restart(message, user){
 */
 
 function role(message, user){
-  if (user.id != '310805620775190530')
+  if (!whitelist.includes(user.id))
     return
   var guild = message.guild
   var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
@@ -266,7 +266,7 @@ function role(message, user){
 }
 
 function unrole(message, user){
-  if (user.id != '310805620775190530')
+  if (!whitelist.includes(user.id))
     return
   var guild = message.guild
   var god = guild.roles.cache.find(r => r.id === '769084407721099265')	
