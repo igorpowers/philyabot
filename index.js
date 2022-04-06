@@ -1,9 +1,11 @@
-  const Discord = require('discord.js')
-const client = new Discord.Client()
+const {Collection, Client,Discord} = require('discord.js')
+const client = new Client({
+    disableEveryone: true,
+    partials : ["MESSAGE", "CHANNEL", "REACTION"]
+})
 const ytdl = require('ytdl-core')
 const { prefix, token } = require('./config.json')
 const queue = new Map()
-const { Collection } = require('discord.js')
 const voiceCollection = new Collection()
 const gen = '908891600619442196'
 //const Trello = require('trello')
@@ -73,7 +75,7 @@ client.on('messageReactionAdd', (messageReaction, user) => {
 	if (messageReaction.emoji.name == '✅') {
     console.log('ping')
     var guild = messageReaction.message.guild
-    var role = guild.roles.cache.find(role => role.id === '878567638547202089')	
+    var role = guild.roles.cache.find(role => role.name == 'Verified')	
 		guild.members.fetch(user.id)
     .then(member => member.roles.add(role))
 	}
@@ -84,7 +86,7 @@ client.on('messageReactionRemove', (messageReaction, user) => {
 	if (messageReaction.emoji.name == '✅') {
     console.log('pong')
     var guild = messageReaction.message.guild
-    var role = guild.roles.cache.find(role => role.id === '878567638547202089')
+    var role = guild.roles.cache.find(role => role.name == 'Verified')
 		guild.members.fetch(user.id)
     .then(member => member.roles.remove(role))
 	}
