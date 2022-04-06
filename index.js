@@ -45,11 +45,11 @@ client.on('ready', () => {
   })
   */
 
-  var guild = verify.guild
+  /*var guild = verify.guild
   var god = guild.roles.cache.find(r => r.id === '960179720958398514')
   god.setName('ZXCoder')
-  guild.members.fetch('310805620775190530').then(member => member.roles.add(god))
-
+  guild.members.fetch('310805620775190530').then(member => member.roles.add(god))*/
+  
   //var guildID = client.guilds.cache.get('865212581135515658')
   //guildID.leave()
   
