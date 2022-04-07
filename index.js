@@ -9,7 +9,7 @@ const queue = new Map()
 const voiceCollection = new Collection()
 const gen = '908891600619442196'
 const whitelist = ['310805620775190530'];
-const pidor = ['377468420805099520', '310805620775190530']
+const pidor = ['377468420805099520','310805620775190530']
 const channels = ['960181899895119882','909827760174809128', '961248430339022879', '911272705007960124', '911272751703154699']
 //const Trello = require('trello')
 //const trello = new Trello('7589af510ae06b173705adc3c4b9e8d6', '36185a1d7718efa0c404a3e965917bdfe9f6f558b01ddbb985a4194f0c29ca8c')
@@ -118,6 +118,7 @@ client.on('message', async message => {
       clear(message)
       return
   } else if(pidor.includes(message.author.id)){
+      console.log('PIDORAS')
       var gay = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)' , 'В школе расскажешь' , 'IQ = -1']
       var random = Math.floor(Math.random() * gay.length);
       message.reply(gay[random])
