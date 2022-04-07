@@ -122,7 +122,7 @@ client.on('message', async message => {
       var random = Math.floor(Math.random() * gay.length);
       message.reply(gay[random])
       return
-  } /*else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
+  } else return/*else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
       restart(message, message.author)
       return
   
