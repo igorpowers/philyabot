@@ -117,7 +117,7 @@ client.on('message', async message => {
   } else if (message.content.startsWith(`${prefix}clear`)) {
       clear(message)
       return
-  } if(pidor.includes(message.author.id)){
+  } else if(pidor.includes(message.author.id)){
       console.log('PIDORAS')
       var gay = ['Соси хуй', 'Еблан, побрей очко', 'Ебать долбоеб', 'О, привет дура', 'Мать чекни, жива еще?', 'Да в принципе похуй что ты напишешь)' , 'В школе расскажешь' , 'IQ = -1']
       var random = Math.floor(Math.random() * gay.length);
