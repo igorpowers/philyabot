@@ -67,7 +67,6 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
       userLimit: 5,
     }).then(channel=>{
       newState.setChannel(channel)
-      var newc = newState.channel?.id
     })
   } else if(oldState.channel?.id != swfchannel && oldState.channel?.parent?.id == categoryid && !oldState.channel?.members.size && !channels.includes(oldState.channel?.id))
       oldState.channel.delete()
