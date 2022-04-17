@@ -123,11 +123,7 @@ client.on('message', async message => {
       var random = Math.floor(Math.random() * gay.length);
       message.reply(gay[random])
       return
-  } else return/*else if(message.content.startsWith(`${prefix}restart`) && message.channel.id==='908891600619442196'){
-      restart(message, message.author)
-      return
-  
-  }*/
+  } else return
 
  /* 
  if (msg.channel == gen) {
@@ -235,28 +231,6 @@ function skip(message, serverQueue) {
     return message.channel.send('Нет трека, чтобы пропустить!')
   serverQueue.connection.dispatcher.end()
 }
-
-function ans(message){
-    
-
-}
-/*
-async function restart(message, user){
-  if (user.id != '310805620775190530')
-    return message.channel.send('Не хватает прав для использования этой команды')
-  await message.channel.send('Бот перезапускается...')
-  /*.then((_message) => {
-    var log = client.channels.cache.get('909602068539510814')
-    log.send(`${message.author} перезапустил бота`)
-  })
-  
-  client.destroy()
-  client.login(token)
-  console.log(`Logged in as ${client.user.tag}!`)
-  var botcommand = client.channels.cache.get('908891600619442196')
-    botcommand.send('Готов вкалывать :upside_down:')
-}
-*/
 
 function role(message, user){
   if (!whitelist.includes(user.id))
