@@ -64,7 +64,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     newState.guild.channels.create(`Канал ${newState.member.user.username}`, {
       type: 'voice',
       parent: categoryid,
-      userLimit: 5,
+      userLimit: 6,
     }).then(channel=>{
       newState.setChannel(channel)
     })
